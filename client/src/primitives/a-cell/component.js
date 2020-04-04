@@ -26,7 +26,7 @@ const Cell = {
 			const boxType = destructable ? "a-destructable-box" : "a-indestructable-box";
 			const box     = document.createElement(boxType);
 
-			contents.appendChild(box);
+			el.appendChild(box);
 		}
 
 		el.appendChild(contents);

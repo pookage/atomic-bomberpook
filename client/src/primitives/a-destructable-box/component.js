@@ -8,11 +8,7 @@ const DestructableBox = {
 			data
 		} = this;
 
-		// dom
-		const clone = document.importNode(template.content, true);
-
-		// add template to the dom
-		this.el.appendChild(clone);
+		
 	}// init
 };
 
