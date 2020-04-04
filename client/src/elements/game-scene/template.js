@@ -9,62 +9,64 @@ template.innerHTML = `
 		</a-assets>
 		<a-entity
 			position="0 0 0"
-			grid-layout="rows: 3; columns: 3;"
+			grid-layout="rows: 7; columns: 7;"
 		>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
-			<a-entity>
-				<a-box 
-					color="red"
-					scale="0.5 0.5 0.5"
-				></a-box>
-			</a-entity>
+			
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+
+			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell empty="true"></a-cell>
+
+			<a-cell empty="true"></a-cell>
+			<a-cell></a-cell>
+			<a-cell></a-cell>
+			<a-cell></a-cell>
+			<a-cell></a-cell>
+			<a-cell></a-cell>
+			<a-cell empty="true"></a-cell>
+
+			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell empty="true"></a-cell>
+
+			<a-cell empty="true"></a-cell>
+			<a-cell></a-cell>
+			<a-cell></a-cell>
+			<a-cell></a-cell>
+			<a-cell></a-cell>
+			<a-cell></a-cell>
+			<a-cell empty="true"></a-cell>
+
+			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell empty="true"></a-cell>
+
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
+			<a-cell empty="true"></a-cell>
 
 		</a-entity>
 	</a-scene>

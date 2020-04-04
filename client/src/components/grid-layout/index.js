@@ -1,3 +1,5 @@
-import GridLayout from "./GridLayout.js";
+import componentDefintion from "./component.js";
 
-export default GridLayout;
+const component = { "grid-layout" : componentDefintion };
+
+export default component;
