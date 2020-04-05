@@ -18,7 +18,6 @@ const Cell = {
 			}
 		} = this;
 
-
 		const contents = document.importNode(template.content, true);
 
 		if(!empty){

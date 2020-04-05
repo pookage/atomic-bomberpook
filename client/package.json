@@ -13,8 +13,6 @@
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "aframe": "^1.0.4",
-    "aframe-mixinsheet": "^1.0.1",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.4.2",
     "html-webpack-plugin": "^4.0.4",

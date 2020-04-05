@@ -36,8 +36,6 @@ const GridLayout = {
 		let tileIndex = 0;
 		let x, y;
 
-		console.log(xCenter, yCenter)
-
 		// ...for every cell in the grid...
 		for(let row = 0; row < rows; row++){
 			for(let column = 0; column < columns; column++){

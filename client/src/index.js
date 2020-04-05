@@ -20,9 +20,6 @@ for(let element of elements){
 const components = [ ...aframeComponents, ...primitiveComponents ];
 for(let component of components){
 	for(let [ name, Defintion] of Object.entries(component)){
-
-		console.log(name, Defintion)
-
 		AFRAME.registerComponent(name, Defintion);
 	}
 }
@@ -36,5 +33,5 @@ for(let primitive of primitives){
 
 
 // connect to the web socket
-const socket = io(CONFIG.server);
+// const socket = io(CONFIG.server);
 

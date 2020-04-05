@@ -1,6 +1,6 @@
 const primitive = {
 	defaultComponents: {
-		"cell": {}
+		"cell": {},
 	},
 	mappings: {
 		"empty": "cell.empty",
