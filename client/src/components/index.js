@@ -1,7 +1,9 @@
 import GridLayout from "./grid-layout/";
+import MovementControls from "./movement-controls/";
 
 const components = [
-	GridLayout
+	GridLayout,
+	MovementControls
 ];
 
 export default components;

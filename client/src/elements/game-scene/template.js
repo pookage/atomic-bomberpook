@@ -16,14 +16,9 @@ template.innerHTML = `
 			wasd-controls="enabled: false"
 		></a-camera>
 
-		<a-cone
-			color="green"
-			radius-top="0"
-			radius-bottom="0.5"
-			segments-radial="4"
+		<a-player
 			position="-3 0.5 -3"
-			rotation="0 45 0"
-		></a-cone>
+		></a-player>
 
 		<a-entity
 			position="0 0 0"
