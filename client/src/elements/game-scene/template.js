@@ -29,9 +29,20 @@ template.innerHTML = `
 
 		<a-entity
 			position="0 0 0"
-			grid-layout="rows: 7; columns: 7;"
+			grid-layout="rows: 9; columns: 9;"
 		>
+
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
 			
+			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell empty="true"></a-cell>
@@ -39,7 +50,9 @@ template.innerHTML = `
 			<a-cell empty="true"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
 
+			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell destructable="false"></a-cell>
 			<a-cell></a-cell>
@@ -47,7 +60,9 @@ template.innerHTML = `
 			<a-cell></a-cell>
 			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
 
+			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell></a-cell>
 			<a-cell></a-cell>
@@ -55,7 +70,9 @@ template.innerHTML = `
 			<a-cell></a-cell>
 			<a-cell></a-cell>
 			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
 
+			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell destructable="false"></a-cell>
 			<a-cell></a-cell>
@@ -63,7 +80,9 @@ template.innerHTML = `
 			<a-cell></a-cell>
 			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
 
+			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell></a-cell>
 			<a-cell></a-cell>
@@ -71,7 +90,9 @@ template.innerHTML = `
 			<a-cell></a-cell>
 			<a-cell></a-cell>
 			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
 
+			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell destructable="false"></a-cell>
 			<a-cell></a-cell>
@@ -79,7 +100,9 @@ template.innerHTML = `
 			<a-cell></a-cell>
 			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
 
+			<a-cell destructable="false"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell empty="true"></a-cell>
@@ -87,6 +110,17 @@ template.innerHTML = `
 			<a-cell empty="true"></a-cell>
 			<a-cell empty="true"></a-cell>
 			<a-cell empty="true"></a-cell>
+			<a-cell destructable="false"></a-cell>
+
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
+			<a-cell destructable="false"></a-cell>
 
 		</a-entity>
 	</a-scene>
