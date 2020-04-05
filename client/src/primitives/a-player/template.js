@@ -1,14 +1,13 @@
 const template = document.createElement("template");
 
 template.innerHTML = `
-	<a-cone
+	<a-box
 		position="0 0 0"
-		radius-top="0.5"
-		radius-bottom="0.5"
-		segments-radial="4"
+		height="1"
+		width="0.7"
+		depth="0.7"
 		color="green"
-		rotation="0 45 0"
-	></a-cone>
+	></a-box>
 `;
 
 export default template;

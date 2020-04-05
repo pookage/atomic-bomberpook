@@ -9,7 +9,7 @@ const primitive = {
 		},
 		shape: {
 			shape: "box",
-			halfExtents: "0.4 0.4 0.4",
+			halfExtents: "0.35 0.5 0.35",
 		},
 	},
 	mappings: {}
