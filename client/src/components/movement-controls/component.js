@@ -11,41 +11,26 @@ const MovementControls = {
 		this.updateMovement = this.updateMovement.bind(this);
 
 		// state
-		this.goRight     = false;
-		this.goLeft      = false;
-		this.goUp        = false;
-		this.goDown      = false;
+		this.xVelocity = 0;
+		this.zVelocity = 0;
 
 		// helpers
 		this.timeScalar;    // (number) multiplier to apply to any calculations in tick()
-		this.step;          // (number) amount of movement to be applied this tick
-		this.velocity = 5;
 
 		// add listeners
 		window.addEventListener("keydown", this.updateMovement);
 		window.addEventListener("keyup", this.updateMovement);
-
 	},// init
 
 	tick(time, deltaTime){
-
 		this.timeScalar = CONFIG.targetFPS / deltaTime;
-		this.step       = CONFIG.speed * this.timeScalar;
-
-
-		this.el.body.quaternion.set(0, 0, 0, 1);
-
-		// horizontal movement
-		let xVelocity = 0;
-		let zVelocity = 0;
-		if(this.goRight)      xVelocity = this.velocity;
-		else if (this.goLeft) xVelocity = -this.velocity;
-
-		// vertical movement
-		if(this.goUp)        zVelocity = -this.velocity;
-		else if(this.goDown) zVelocity = this.velocity;
-
-		this.el.body.velocity.set(xVelocity, 0, zVelocity);
+		
+		// set the motion of the object in a given direction vector
+		this.el.body.velocity.set(
+			this.xVelocity * this.timeScalar, 
+			0, 
+			this.zVelocity * this.timeScalar
+		);
 	}, // tick
 
 	remove(){
@@ -59,40 +44,39 @@ const MovementControls = {
 	// EVENT HANDLING
 	// -----------------------------------
 	updateMovement(event){
-
 		const {
-			key,
-			type
+			key, // (string) identifier for the key that was pressed
+			type // (string)[keyup, keydown] which event was fired
 		} = event;
 
-		const pressed    = type === "keydown";
+		const pressed = type === "keydown";
 		
 		switch(key){
 			case "ArrowRight":
 			case "d":
 			case "D": {
-				this.goRight    = pressed;
+				this.xVelocity = pressed ? CONFIG.velocity : 0;
 				break;
 			}
 
 			case "ArrowLeft":
 			case "a":
 			case "A": {
-				this.goLeft     = pressed;
+				this.xVelocity = pressed ? -CONFIG.velocity : 0;
 				break;
 			}
 
 			case "ArrowUp":
 			case "w":
 			case "W": {
-				this.goUp       = pressed;
+				this.zVelocity = pressed ? -CONFIG.velocity : 0;
 				break;
 			}
 
 			case "ArrowDown":
 			case "s":
 			case "S": {
-				this.goDown     = pressed;
+				this.zVelocity = pressed ? CONFIG.velocity : 0;
 				break;
 			}
 		}

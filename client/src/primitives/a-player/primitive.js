@@ -6,7 +6,8 @@ const primitive = {
 		"body": {
 			type: "dynamic",
 			mass: 0.1,
-			shape: "none"
+			shape: "none",
+			angularDamping: 1
 		},
 		shape: {
 			halfExtents: "0.4 0.4 0.4",

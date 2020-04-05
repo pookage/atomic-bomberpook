@@ -5,7 +5,7 @@ const template = document.createElement("template");
 template.innerHTML = `
 	<a-scene 
 		class="${s.scene}"
-		physics="debug: true"
+		physics="debug: false; gravity: 0;"
 	>
 		<a-assets>
 			<!-- assets and MSS go in here later -->
@@ -22,6 +22,9 @@ template.innerHTML = `
 		<a-player
 			position="-3 0.5 -3"
 		></a-player>
+
+		<a-entity>
+		</a-entity>
 
 		<a-entity
 			position="0 0 0"
