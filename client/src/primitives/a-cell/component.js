@@ -18,15 +18,12 @@ const Cell = {
 			}
 		} = this;
 
-
 		const contents = document.importNode(template.content, true);
 
 		if(!empty){
 			// create the contents of the tile
 			const boxType = destructable ? "a-destructable-box" : "a-indestructable-box";
 			const box     = document.createElement(boxType);
-
-			box.classList.add("cell__block");
 
 			el.appendChild(box);
 		}

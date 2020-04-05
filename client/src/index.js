@@ -33,5 +33,5 @@ for(let primitive of primitives){
 
 
 // connect to the web socket
-const socket = io(CONFIG.server);
+// const socket = io(CONFIG.server);
 

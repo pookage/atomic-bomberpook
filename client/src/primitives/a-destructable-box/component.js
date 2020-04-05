@@ -8,7 +8,6 @@ const DestructableBox = {
 			data
 		} = this;
 
-		
 	}// init
 };
 

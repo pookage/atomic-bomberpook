@@ -10,9 +10,6 @@ const Player = {
 
 		const contents = document.importNode(template.content, true);
 
-
-		console.log({contents})
-
 		this.el.appendChild(contents);
 	}// init
 };
