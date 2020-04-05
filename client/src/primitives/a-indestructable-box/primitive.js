@@ -1,5 +1,6 @@
 const primitive = {
 	defaultComponents: {
+		"className": "block",
 		"geometry": {
 			primitive: "box"
 		},

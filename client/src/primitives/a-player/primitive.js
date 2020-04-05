@@ -13,7 +13,8 @@ const primitive = {
 		"rotation": "0 0 0",
 		"raycaster": {
 			far: 1,
-			showLine: true
+			showLine: true,
+			objects: ".cell__block"
 		},
 		"movement-controls": {},
 	},

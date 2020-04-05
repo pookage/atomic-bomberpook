@@ -15,7 +15,9 @@ const MovementControls = {
 		this.goLeft     = false;
 		this.goUp       = false;
 		this.goDown     = false;
-		this.direction  = { x: 0, y: 0, z: 0 };
+		this.directionX = new THREE.Vector3();
+		this.directionY = new THREE.Vector3();
+		this.direction  = new THREE.Vector3();
 
 		// helpers
 		this.timeScalar; // (number) multiplier to apply to any calculations in tick()
@@ -60,62 +62,49 @@ const MovementControls = {
 			type
 		} = event;
 
-		const pressed = type === "keydown";
+		const pressed    = type === "keydown";
+		const zeroVector = new THREE.Vector3();
 
 		switch(key){
 			case "ArrowRight":
 			case "d":
 			case "D": {
-				this.goRight   = pressed;
-				this.direction = {
-					x: 1,
-					y: 0,
-					z: 0
-				};
+				this.goRight    = pressed;
+				this.directionX = pressed ? new THREE.Vector3(1, 0, 0) : zeroVector;
 				break;
 			}
 
 			case "ArrowLeft":
 			case "a":
 			case "A": {
-				this.goLeft    = pressed;
-				this.direction = {
-					x: -1,
-					y: 0,
-					z: 0
-				};
+				this.goLeft     = pressed;
+				this.directionX = pressed ? new THREE.Vector3(-1, 0, 0) : zeroVector;
 				break;
 			}
 
 			case "ArrowUp":
 			case "w":
 			case "W": {
-				this.goUp      = pressed;
-				this.direction = {
-					x: 0,
-					y: 0,
-					z: -1
-				};
+				this.goUp       = pressed;
+				this.directionY = pressed ? new THREE.Vector3(0, 0, -1) : zeroVector;
 				break;
 			}
 
 			case "ArrowDown":
 			case "s":
 			case "S": {
-				this.goDown    = pressed;
-				this.direction = {
-					x: 0,
-					y: 0,
-					z: 1
-				};
+				this.goDown     = pressed;
+				this.directionY = pressed ? new THREE.Vector3(0, 0, 1) : zeroVector;
 				break;
 			}
 		}
 
+		this.direction = zeroVector.clone().add(this.directionX).add(this.directionY);
 
-		// don't work!
-		this.el.components.raycaster.data.direction = this.direction;
-		console.log(this.el.components.raycaster.data)
+		// console.log
+
+		this.el.setAttribute("raycaster", "direction", this.direction)
+		
 	}, // updateMovement
 
 
