@@ -1,7 +1,7 @@
 const primitive = {
 	defaultComponents: {
 		"raycaster": {
-			far: 1,
+			far: 0.6,
 			showLine: true,
 			objects: ".cell__block"
 		},

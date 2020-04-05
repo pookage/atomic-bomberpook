@@ -20,9 +20,6 @@ for(let element of elements){
 const components = [ ...aframeComponents, ...primitiveComponents ];
 for(let component of components){
 	for(let [ name, Defintion] of Object.entries(component)){
-
-		console.log(name, Defintion)
-
 		AFRAME.registerComponent(name, Defintion);
 	}
 }

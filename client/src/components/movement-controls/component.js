@@ -9,12 +9,14 @@ const MovementControls = {
 
 		// scope binding
 		this.updateMovement = this.updateMovement.bind(this);
+		this.updateBlockage = this.updateBlockage.bind(this);
 
 		// state
 		this.goRight    = false;
 		this.goLeft     = false;
 		this.goUp       = false;
 		this.goDown     = false;
+		this.blocked    = false;
 		this.directionX = new THREE.Vector3();
 		this.directionY = new THREE.Vector3();
 		this.direction  = new THREE.Vector3();
@@ -28,6 +30,9 @@ const MovementControls = {
 		// add listeners
 		window.addEventListener("keydown", this.updateMovement);
 		window.addEventListener("keyup", this.updateMovement);
+
+		this.el.addEventListener("raycaster-intersection", this.updateBlockage);
+		this.el.addEventListener("raycaster-intersection-cleared", this.updateBlockage);
 	},// init
 
 	tick(time, deltaTime){
@@ -35,14 +40,15 @@ const MovementControls = {
 		this.timeScalar = CONFIG.targetFPS / deltaTime;
 		this.step       = CONFIG.speed * this.timeScalar;
 
-		// horizontal movement
-		if(this.goRight)      this.el.object3D.position.x += this.step;
-		else if (this.goLeft) this.el.object3D.position.x -= this.step;
+		if(!this.blocked){
+			// horizontal movement
+			if(this.goRight)      this.el.object3D.position.x += this.step;
+			else if (this.goLeft) this.el.object3D.position.x -= this.step;
 
-		// vertical movement
-		if(this.goUp)        this.el.object3D.position.z -= this.step;
-		else if(this.goDown) this.el.object3D.position.z += this.step;
-
+			// vertical movement
+			if(this.goUp)        this.el.object3D.position.z -= this.step;
+			else if(this.goDown) this.el.object3D.position.z += this.step;
+		}
 	}, // tick
 
 	remove(){
@@ -99,13 +105,19 @@ const MovementControls = {
 			}
 		}
 
+		// calculate the direcion we're travelling
 		this.direction = zeroVector.clone().add(this.directionX).add(this.directionY);
-
-		// console.log
-
+		// 'look ahead' with the raycaster in the direction of travel
 		this.el.setAttribute("raycaster", "direction", this.direction)
-		
 	}, // updateMovement
+
+	updateBlockage(event){
+		const {
+			intersections: hasIntersections
+		} = event.detail;
+
+		this.blocked = !!hasIntersections;
+	}, // updateBlockage
 
 
 
