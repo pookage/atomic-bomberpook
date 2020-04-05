@@ -15,10 +15,12 @@ const MovementControls = {
 		this.goLeft     = false;
 		this.goUp       = false;
 		this.goDown     = false;
+		this.direction  = { x: 0, y: 0, z: 0 };
 
 		// helpers
 		this.timeScalar; // (number) multiplier to apply to any calculations in tick()
 		this.step;       // (number) amount of movement to be applied this tick
+
 
 
 		// add listeners
@@ -64,31 +66,56 @@ const MovementControls = {
 			case "ArrowRight":
 			case "d":
 			case "D": {
-				this.goRight = pressed;
+				this.goRight   = pressed;
+				this.direction = {
+					x: 1,
+					y: 0,
+					z: 0
+				};
 				break;
 			}
 
 			case "ArrowLeft":
 			case "a":
 			case "A": {
-				this.goLeft = pressed;
+				this.goLeft    = pressed;
+				this.direction = {
+					x: -1,
+					y: 0,
+					z: 0
+				};
 				break;
 			}
 
 			case "ArrowUp":
 			case "w":
 			case "W": {
-				this.goUp = pressed;
+				this.goUp      = pressed;
+				this.direction = {
+					x: 0,
+					y: 0,
+					z: -1
+				};
 				break;
 			}
 
 			case "ArrowDown":
 			case "s":
 			case "S": {
-				this.goDown = pressed;
+				this.goDown    = pressed;
+				this.direction = {
+					x: 0,
+					y: 0,
+					z: 1
+				};
 				break;
 			}
 		}
+
+
+		// don't work!
+		this.el.components.raycaster.data.direction = this.direction;
+		console.log(this.el.components.raycaster.data)
 	}, // updateMovement
 
 

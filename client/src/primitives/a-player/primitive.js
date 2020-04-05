@@ -10,7 +10,11 @@ const primitive = {
 			color: "green"
 		},
 		"scale": "1 1 1",
-		"rotation": "0 45 0",
+		"rotation": "0 0 0",
+		"raycaster": {
+			far: 1,
+			showLine: true
+		},
 		"movement-controls": {},
 	},
 	mappings: {}
