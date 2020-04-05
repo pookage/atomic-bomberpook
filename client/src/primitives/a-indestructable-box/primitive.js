@@ -1,12 +1,11 @@
 const primitive = {
 	defaultComponents: {
 		"className": "block",
-
 		"geometry": {
-			primitive: "box"
+			primitive: "box",
 		},
 		"material": {
-			color: "blue"
+			src: "#texture__indestructable__rock"
 		},
 		"scale": "1 1 1",
 		"position": "0 0.5 0",

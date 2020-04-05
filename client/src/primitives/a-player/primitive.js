@@ -2,14 +2,13 @@ const primitive = {
 	defaultComponents: {	
 		"player": {},
 		"movement-controls": {},
-
 		"body": {
-			type: "dynamic",
-			mass: 0.1,
-			shape: "none",
-			angularDamping: 1
+			type: "dynamic", // [static, dynamic] whether it causes or responds to other objects
+			shape: "none",   // 
+			angularDamping: 1,
 		},
 		shape: {
+			shape: "box",
 			halfExtents: "0.4 0.4 0.4",
 		},
 	},

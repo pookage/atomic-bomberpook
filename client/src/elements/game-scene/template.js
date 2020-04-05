@@ -5,10 +5,11 @@ const template = document.createElement("template");
 template.innerHTML = `
 	<a-scene 
 		class="${s.scene}"
-		physics="debug: false; gravity: 0;"
+		physics="debug: true; gravity: 0;"
 	>
 		<a-assets>
-			<!-- assets and MSS go in here later -->
+			<img src="assets/3d/textures/crate.jpg" alt="Destructable block texture." id="texture__destructable__crate" />
+			<img src="assets/3d/textures/rock.jpg" alt="Indestructable block texture." id="texture__indestructable__rock" />
 		</a-assets>
 
 		<a-camera
