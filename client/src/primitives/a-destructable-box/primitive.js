@@ -8,7 +8,8 @@ const primitive = {
 		},
 		"scale": "1 1 1",
 		"position": "0 0.5 0",
-		"destructable-box": {}
+		"destructable-box": {},
+		"static-body": {}
 	}
 };
 export default primitive;
