@@ -1,7 +1,9 @@
 const primitive = {
 	defaultComponents: {
 		"cell": {},
-		"static-body": {}
+		"static-body": {
+			linearDamping: 0
+		}
 	},
 	mappings: {
 		"empty": "cell.empty",

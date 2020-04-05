@@ -19,11 +19,12 @@ const MovementControls = {
 		// helpers
 		this.timeScalar;    // (number) multiplier to apply to any calculations in tick()
 		this.step;          // (number) amount of movement to be applied this tick
-
+		this.velocity = 5;
 
 		// add listeners
 		window.addEventListener("keydown", this.updateMovement);
 		window.addEventListener("keyup", this.updateMovement);
+
 	},// init
 
 	tick(time, deltaTime){
@@ -31,16 +32,20 @@ const MovementControls = {
 		this.timeScalar = CONFIG.targetFPS / deltaTime;
 		this.step       = CONFIG.speed * this.timeScalar;
 
+
+		this.el.body.quaternion.set(0, 0, 0, 1);
+
 		// horizontal movement
-		if(this.goRight) {
-			this.el.object3D.position.x += this.step;
-			console.log("going right!")
-		}
-		else if (this.goLeft) this.el.object3D.position.x -= this.step;
+		let xVelocity = 0;
+		let zVelocity = 0;
+		if(this.goRight)      xVelocity = this.velocity;
+		else if (this.goLeft) xVelocity = -this.velocity;
 
 		// vertical movement
-		if(this.goUp)        this.el.object3D.position.z -= this.step;
-		else if(this.goDown) this.el.object3D.position.z += this.step;
+		if(this.goUp)        zVelocity = -this.velocity;
+		else if(this.goDown) zVelocity = this.velocity;
+
+		this.el.body.velocity.set(xVelocity, 0, zVelocity);
 	}, // tick
 
 	remove(){

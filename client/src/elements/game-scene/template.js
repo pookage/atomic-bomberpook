@@ -3,7 +3,10 @@ import { s } from "./";
 const template = document.createElement("template");
 
 template.innerHTML = `
-	<a-scene class="${s.scene}">
+	<a-scene 
+		class="${s.scene}"
+		physics="debug: true"
+	>
 		<a-assets>
 			<!-- assets and MSS go in here later -->
 		</a-assets>

@@ -1,6 +1,7 @@
 const primitive = {
 	defaultComponents: {
 		"className": "block",
+
 		"geometry": {
 			primitive: "box"
 		},
@@ -10,7 +11,9 @@ const primitive = {
 		"scale": "1 1 1",
 		"position": "0 0.5 0",
 		"indestructable-box": {},
-		"static-body": {}
+		"static-body": {
+			shape: "box"
+		}
 	}
 };
 export default primitive;
