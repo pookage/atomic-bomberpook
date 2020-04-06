@@ -31,7 +31,15 @@ const BombControls = {
 	// UTILS
 	// ------------------------------
 	dropBomb(){
-		console.log("dropping zee bomb!");
+		const { x, z }   = this.el.object3D.position;
+		const bomb       = document.createElement("a-bomb");
+		const radius     = 0.4;
+		bomb.setAttribute("position", `${x} ${radius} ${z}`);
+
+		this.el.sceneEl.appendChild(bomb);
+
+		console.log(bomb.components.geometry)
+
 	}// dropBomb
 };
 
