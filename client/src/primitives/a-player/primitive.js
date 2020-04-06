@@ -2,6 +2,7 @@ const primitive = {
 	defaultComponents: {	
 		"player": {},
 		"movement-controls": {},
+		"bomb-controls": {},
 		"body": {
 			type: "dynamic", // [static, dynamic] whether it causes or responds to other objects
 			shape: "none",   // 
