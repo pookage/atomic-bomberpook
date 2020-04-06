@@ -1,4 +1,5 @@
 {
 	"limit": 1,
-	"lifespan": 2500
+	"lifespan": 2500,
+	"explosion": 1
 }

@@ -12,12 +12,13 @@ const BombControls = {
 		this.updateCurrentTile = this.updateCurrentTile.bind(this);
 		this.exploded          = this.exploded.bind(this);
 
-		// state
-		this.limit    = CONFIG.limit;
-		this.lifespan = CONFIG.lifespan;
-		this.count    = 0;
+		// config
+		this.limit     = CONFIG.limit;
+		this.lifespan  = CONFIG.lifespan;
+		this.explosion = CONFIG.explosion;
 
-		console.log(this.lifespan)
+		// state
+		this.count     = 0;
 
 		// helpers
 		this.currentTile; // (HTMLElement) reference to the current tile being stood on
@@ -68,6 +69,7 @@ const BombControls = {
 			// configure new bomb
 			bomb.setAttribute("position", `0 ${radius} 0`);
 			bomb.setAttribute("lifespan", this.lifespan);
+			bomb.setAttribute("explosion", this.explosion);
 			bomb.addEventListener("bomb__explode", this.exploded);
 
 			this.currentTile.parentElement.appendChild(bomb);
