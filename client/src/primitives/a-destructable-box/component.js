@@ -9,23 +9,23 @@ const DestructableBox = {
 		} = this;
 
 		// scope binding
-		this.destroy = this.destroy.bind(this);
+		this.destruct = this.destruct.bind(this);
 
 		el.classList.add("explosion__destructable");
-		el.addEventListener("explosion__destroyed", this.destroy);
+		el.addEventListener("explosion__destroyed", this.destruct);
 	},// init
 
 	// UTILS
 	// --------------------------
-	destroy(){
+	destruct(){
 
 		const { el } = this;
 
 		// remove from the physics system
 		if(el.body.world) el.body.world.remove(el.body);
 		// remove from the scene
-		el.parentElement.remove(el);
-	}// destroy
+		el.parentElement.removeChild(el);
+	}// destruct
 };
 
 export default DestructableBox;

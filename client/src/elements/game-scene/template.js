@@ -24,9 +24,6 @@ template.innerHTML = `
 			position="-3 0.5 -3"
 		></a-player>
 
-		<a-entity>
-		</a-entity>
-
 		<a-entity
 			position="0 0 0"
 			grid-layout="rows: 9; columns: 9;"

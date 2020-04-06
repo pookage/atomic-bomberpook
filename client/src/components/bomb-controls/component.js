@@ -28,7 +28,7 @@ const BombControls = {
 		this.el.addEventListener("raycaster-intersection", this.updateCurrentTile);
 	}, // remove
 	remove(){
-
+		window.removeEventListener("keyup", this.parseInput);
 	}, // remove
 
 	// EVENT HANDLING

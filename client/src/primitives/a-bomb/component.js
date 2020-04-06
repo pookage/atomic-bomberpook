@@ -20,12 +20,12 @@ const Bomb = {
 		} = data;
 
 		// scope binding
-		this.explode           = this.explode.bind(this);
-		this.generateExplosion = this.generateExplosion.bind(this);
-		this.updateRadiusData  = this.updateRadiusData.bind(this);
+		this.explode            = this.explode.bind(this);
+		this.generateExplosion  = this.generateExplosion.bind(this);
+		this.destroyIntersected = this.destroyIntersected.bind(this);
 
-		// state
-		this.readyForRemoval = false;
+		// config
+		this.impassable = ["A-DESTRUCTABLE-BOX", "A-INDESTRUCTABLE-BOX"];
 	
 		// add template to the element
 		const contents  = document.importNode(template.content, true);
@@ -33,7 +33,7 @@ const Bomb = {
 		this.el.appendChild(contents);
 
 		// add listeners
-		this.el.addEventListener("raycaster-intersection", this.updateRadiusData);
+		this.el.addEventListener("raycaster-intersection", this.destroyIntersected);
 
 		// helpers
 		this.detonationDelay = setTimeout(this.explode, lifespan);
@@ -41,32 +41,32 @@ const Bomb = {
 
 	// EVENT HANDLING
 	// --------------------------
-	updateRadiusData(event){
+	destroyIntersected(event){
 		const { intersections } = event.detail;
 		const [ intersection ]  = intersections;
 
-
 		for(let { object: { el }, distance } of intersections){
+			// fire a destroyed event on anything destructable
 			if(el.classList.contains("explosion__destructable")){
 				el.emit("explosion__destroyed");
-				if(el.tagName === "a-destructable-box"){
-					// stop at the first destructable box
-					break;
-				}
 			}
+			// don't continue if we hit something impassable
+			if(this.impassable.indexOf(el.tagName) > -1) break;
 		}
-	}, // updateRadiusData
+	}, // destroyIntersected
 
 	// UTILS
 	// --------------------------
 	generateExplosion(){
 
+		// define parameters of each raycaster
 		const raycasterConfig = {
 			showLine: true,
 			objects: ".explosion__destructable, .explosion__containing",
 			far: this.data.explosion,
 		};
 
+		// create a raycaster in every direction
 		this.el.setAttribute("raycaster__top", {
 			...raycasterConfig,
 			direction: "0 0 -1"
@@ -96,9 +96,10 @@ const Bomb = {
 		}, 100);
 	},// generateExplosion
 	explode(){
+		// create an explosion of raycasters
 		this.generateExplosion();
 
-
+		// remove the bomb
 		this.explosive.setAttribute("scale", "0 0 0");
 		this.el.emit("bomb__explode");
 		this.el.remove(this.explosive);

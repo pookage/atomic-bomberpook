@@ -24,13 +24,14 @@ const MovementControls = {
 
 	tick(time, deltaTime){
 		this.timeScalar = CONFIG.targetFPS / deltaTime;
-		
-		// set the motion of the object in a given direction vector
-		this.el.body.velocity.set(
-			this.xVelocity * this.timeScalar, 
-			0, 
-			this.zVelocity * this.timeScalar
-		);
+		if(this.el.body){
+			// set the motion of the object in a given direction vector
+			this.el.body.velocity.set(
+				this.xVelocity * this.timeScalar, 
+				0, 
+				this.zVelocity * this.timeScalar
+			);
+		}
 	}, // tick
 
 	remove(){

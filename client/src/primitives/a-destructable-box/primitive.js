@@ -14,12 +14,8 @@ const primitive = {
 		"destructable-box": {},
 		body: {
 			type: "static",
-			shape: "none"
+			shape: "box"
 		},
-		shape: {
-			shape: "box",
-			halfExtents: "0.5 0.5 0.5"
-		}
 	}
 };
 export default primitive;
