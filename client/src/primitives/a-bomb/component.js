@@ -1,5 +1,7 @@
 const Bomb = {
-	schema: {},
+	schema: {
+		lifespan: { type: "number" }
+	},
 
 	// LIFECYCLE JAZZ
 	// ---------------------------
@@ -9,7 +11,24 @@ const Bomb = {
 			data
 		} = this;
 
+		const {
+			lifespan
+		} = data;
+
+		// scope binding
+		this.explode = this.explode.bind(this);
+
+		// helpers
+		this.detonationDelay = setTimeout(this.explode, lifespan);
 	}, // init
+
+
+	// UTILS
+	// --------------------------
+	explode(){
+		this.el.emit("bomb__explode");
+		console.log("boom!")
+	}// explode
 };
 
 export default Bomb;

@@ -1,9 +1,15 @@
 const primitive = {
 	defaultComponents: {	
-		"player": {},
+		player: {},
 		"movement-controls": {},
 		"bomb-controls": {},
-		"body": {
+		raycaster: {
+			direction: "0 -1 0",
+			objects: ".cell__floor",
+			showLine: true,
+			far: 1 
+		},
+		body: {
 			type: "dynamic", // [static, dynamic] whether it causes or responds to other objects
 			shape: "none",   // 
 			angularDamping: 1,
