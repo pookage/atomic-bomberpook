@@ -24,9 +24,9 @@ const Bomb = {
 		this.generateExplosion = this.generateExplosion.bind(this);
 		this.updateRadiusData  = this.updateRadiusData.bind(this);
 
-		// calculate how big the explosion will be in each direction
-		this.explosion = this.generateExplosion(explosionRadius);
-
+		// state
+		this.readyForRemoval = false;
+	
 		// add template to the element
 		const contents  = document.importNode(template.content, true);
 		this.explosive  = contents.querySelector(".bomb__explosive");
@@ -36,12 +36,8 @@ const Bomb = {
 		this.el.addEventListener("raycaster-intersection", this.updateRadiusData);
 
 		// helpers
-		// this.detonationDelay = setTimeout(this.explode, lifespan);
+		this.detonationDelay = setTimeout(this.explode, lifespan);
 	}, // init
-	play(){
-		
-	}, // play
-
 
 	// EVENT HANDLING
 	// --------------------------
@@ -49,17 +45,16 @@ const Bomb = {
 		const { intersections } = event.detail;
 		const [ intersection ]  = intersections;
 
-		console.log(...intersections)
 
-		const {
-			object: { el },
-			distance
-		} = intersection;
-
-		if(el.classList.contains("explosion__destructable")){
-			el.emit("explosion__destroyed");
+		for(let { object: { el }, distance } of intersections){
+			if(el.classList.contains("explosion__destructable")){
+				el.emit("explosion__destroyed");
+				if(el.tagName === "a-destructable-box"){
+					// stop at the first destructable box
+					break;
+				}
+			}
 		}
-
 	}, // updateRadiusData
 
 	// UTILS
@@ -70,7 +65,13 @@ const Bomb = {
 			objects: ".explosion__destructable, .explosion__containing",
 			far: this.data.explosion,
 			direction: "1 0 0"
-		})
+		});
+
+		// remove itself after a short delay to give time for intersections to fire
+		setTimeout(() => {
+			this.el.removeAttribute("raycaster");
+			this.el.parentElement.remove(this.el);
+		}, 100);
 	},// generateExplosion
 	explode(){
 		this.generateExplosion();
