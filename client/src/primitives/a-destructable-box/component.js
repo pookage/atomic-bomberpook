@@ -5,7 +5,6 @@ const DestructableBox = {
 	init(){
 		const {
 			el,
-			data
 		} = this;
 
 		// scope binding
@@ -18,11 +17,7 @@ const DestructableBox = {
 	// UTILS
 	// --------------------------
 	destruct(){
-
 		const { el } = this;
-
-		// remove from the physics system
-		if(el.body.world) el.body.world.remove(el.body);
 		// remove from the scene
 		el.parentElement.removeChild(el);
 	}// destruct

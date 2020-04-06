@@ -3,7 +3,6 @@ const IndestructableBox = {
 	init(){
 		const {
 			el,
-			data
 		} = this;
 
 		el.classList.add("explosion__containing");

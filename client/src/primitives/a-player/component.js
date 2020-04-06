@@ -5,7 +5,6 @@ const Player = {
 	init(){
 		const {
 			el,
-			data
 		} = this;
 
 		// scope binding
@@ -24,13 +23,7 @@ const Player = {
 	destruct(){
 		const { el } = this;
 
-		// remove from the physics system
-		if(el.body && el.body.world) {
-			el.body.world.removeBody(el.body);
-		}
-
 		el.parentEl.removeChild(el);
-		// still leaves behind a physics thing, maybe?
 	}// destruct
 };
 
