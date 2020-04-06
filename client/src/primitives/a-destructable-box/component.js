@@ -18,10 +18,13 @@ const DestructableBox = {
 	// UTILS
 	// --------------------------
 	destroy(){
+
+		const { el } = this;
+
 		// remove from the physics system
-		this.el.body.world.remove(this.el.body);
+		if(el.body.world) el.body.world.remove(el.body);
 		// remove from the scene
-		this.el.parentElement.remove(this.el);
+		el.parentElement.remove(el);
 	}// destroy
 };
 

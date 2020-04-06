@@ -60,16 +60,38 @@ const Bomb = {
 	// UTILS
 	// --------------------------
 	generateExplosion(){
-		this.el.setAttribute("raycaster", {
+
+		const raycasterConfig = {
 			showLine: true,
 			objects: ".explosion__destructable, .explosion__containing",
 			far: this.data.explosion,
+		};
+
+		this.el.setAttribute("raycaster__top", {
+			...raycasterConfig,
+			direction: "0 0 -1"
+		});
+		this.el.setAttribute("raycaster__right", {
+			...raycasterConfig,
 			direction: "1 0 0"
 		});
+		this.el.setAttribute("raycaster__bottom", {
+			...raycasterConfig,
+			direction: "0 0 1"
+		});
+		this.el.setAttribute("raycaster__left", {
+			...raycasterConfig,
+			direction: "-1 0 0"
+		});
 
+		
 		// remove itself after a short delay to give time for intersections to fire
 		setTimeout(() => {
-			this.el.removeAttribute("raycaster");
+			this.el.removeAttribute("raycaster__top");
+			this.el.removeAttribute("raycaster__right");
+			this.el.removeAttribute("raycaster__bottom");
+			this.el.removeAttribute("raycaster__left");
+
 			this.el.parentElement.remove(this.el);
 		}, 100);
 	},// generateExplosion

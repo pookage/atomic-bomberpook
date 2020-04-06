@@ -22,7 +22,16 @@ const Player = {
 	// UTILS
 	// --------------------------
 	destroy(){
-		console.log("killed the player!");
+		const { el } = this;
+
+		// remove from the physics system
+		if(el.body.world) {
+			el.body.world.remove(el.body);
+		}
+		// remove from the scene
+		el.parentNode.remove(el);
+
+		// still leaves behind a physics thing, maybe?
 	}// destroy
 };
 
