@@ -6,7 +6,10 @@ const IndestructableBox = {
 			data
 		} = this;
 
-	}// init
+		el.classList.add("explosion__containing");
+	},// init
+
+
 };
 
 export default IndestructableBox;

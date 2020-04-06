@@ -8,10 +8,22 @@ const Player = {
 			data
 		} = this;
 
+		// scope binding
+		this.destroy = this.destroy.bind(this);
+
 		const contents = document.importNode(template.content, true);
 
-		this.el.appendChild(contents);
-	}// init
+		el.appendChild(contents);
+		el.classList.add("explosion__destructable");
+
+		el.addEventListener("explosion__destroyed", this.destroy);
+	},// init
+
+	// UTILS
+	// --------------------------
+	destroy(){
+		console.log("killed the player!");
+	}// destroy
 };
 
 export default Player;

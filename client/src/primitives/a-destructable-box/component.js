@@ -8,7 +8,18 @@ const DestructableBox = {
 			data
 		} = this;
 
-	}// init
+		// scope binding
+		this.destroy = this.destroy.bind(this);
+
+		el.classList.add("explosion__destructable");
+		el.addEventListener("explosion__destroyed", this.destroy);
+	},// init
+
+	// UTILS
+	// --------------------------
+	destroy(){
+		console.log("destructable box destroyed!")
+	}// destroy
 };
 
 export default DestructableBox;
