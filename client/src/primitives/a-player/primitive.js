@@ -1,15 +1,18 @@
 const primitive = {
 	defaultComponents: {	
-		"player": {},
+		player: {},
 		"movement-controls": {},
-		"body": {
-			type: "dynamic", // [static, dynamic] whether it causes or responds to other objects
-			shape: "none",   // 
-			angularDamping: 1,
+		"bomb-controls": {},
+		raycaster: {
+			direction: "0 -1 0",
+			objects: ".cell__floor",
+			showLine: true,
+			far: 1 
 		},
-		shape: {
-			shape: "box",
-			halfExtents: "0.4 0.4 0.4",
+		body: {
+			type: "dynamic", // [static, dynamic] whether it causes or responds to other objects
+			shape: "box",   // 
+			angularDamping: 1,
 		},
 	},
 	mappings: {}

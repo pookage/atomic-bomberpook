@@ -20,6 +20,8 @@ const Cell = {
 
 		const contents = document.importNode(template.content, true);
 
+		this.el.classList.add("cell__wrapper");
+
 		if(!empty){
 			// create the contents of the tile
 			const boxType = destructable ? "a-destructable-box" : "a-indestructable-box";
