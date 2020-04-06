@@ -96,6 +96,20 @@ const Bomb = {
 		}, 100);
 	},// generateExplosion
 	explode(){
+
+		/*
+
+			NOTE: 
+				I dig this as an aesthetic - might be worth taking a look at...
+				https://github.com/jeromeetienne/threex.laser/blob/master/threex.laserbeam.js
+				https://github.com/jeromeetienne/threex.laser/blob/master/examples/demo.html
+				https://github.com/jeromeetienne/threex.laser/blob/master/threex.lasercooked.js
+	
+				1. adds a point light at the opint of intersection
+				2. creates a simple plane geometry with a gradient texture
+				3. plane-geometry follows the camera
+		*/
+
 		// create an explosion of raycasters
 		this.generateExplosion();
 
