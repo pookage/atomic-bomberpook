@@ -4,7 +4,7 @@ const primitive = {
 	},
 	mappings: {
 		lifespan: "bomb.lifespan",
-		explosion: "bomb.explosion"
+		"blast-radius": "bomb.blastRadius"
 	}
 };
 

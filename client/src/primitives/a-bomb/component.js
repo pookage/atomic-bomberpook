@@ -3,7 +3,7 @@ import { template } from "./";
 const Bomb = {
 	schema: {
 		lifespan: { type: "number" },
-		explosion: { type: "number"}
+		blastRadius: { type: "number"}
 	},
 
 	// LIFECYCLE JAZZ
@@ -16,13 +16,13 @@ const Bomb = {
 
 		const {
 			lifespan,
-			explosion: explosionRadius
+			blastRadius
 		} = data;
 
 		// scope binding
 		this.explode            = this.explode.bind(this);
 		this.generateExplosion  = this.generateExplosion.bind(this);
-		this.destroyIntersected = this.destroyIntersected.bind(this);
+		this.destroy            = this.destroy.bind(this);
 
 		// config
 		this.impassable = ["A-DESTRUCTABLE-BOX", "A-INDESTRUCTABLE-BOX"];
@@ -30,70 +30,42 @@ const Bomb = {
 		// add template to the element
 		const contents  = document.importNode(template.content, true);
 		this.explosive  = contents.querySelector(".bomb__explosive");
-		this.el.appendChild(contents);
+		this.el.appendChild(contents);		
 
-		// add listeners
-		this.el.addEventListener("raycaster-intersection", this.destroyIntersected);
-
-		// helpers
+		// explode after a delay
 		this.detonationDelay = setTimeout(this.explode, lifespan);
+
+		// event handling
+		this.el.addEventListener("explosion__end", this.destroy);
 	}, // init
 
-	// EVENT HANDLING
-	// --------------------------
-	destroyIntersected(event){
-		const { intersections } = event.detail;
-		const [ intersection ]  = intersections;
 
-		for(let { object: { el }, distance } of intersections){
-			// fire a destroyed event on anything destructable
-			if(el.classList.contains("explosion__destructable")){
-				el.emit("explosion__destroyed");
-			}
-			// don't continue if we hit something impassable
-			if(this.impassable.indexOf(el.tagName) > -1) break;
-		}
-	}, // destroyIntersected
 
 	// UTILS
 	// --------------------------
 	generateExplosion(){
 
-		// define parameters of each raycaster
-		const raycasterConfig = {
-			showLine: true,
-			objects: ".explosion__destructable, .explosion__containing",
-			far: this.data.explosion,
-		};
+		const {
+			blastRadius
+		} = this.data;
 
-		// create a raycaster in every direction
-		this.el.setAttribute("raycaster__top", {
-			...raycasterConfig,
-			direction: "0 0 -1"
-		});
-		this.el.setAttribute("raycaster__right", {
-			...raycasterConfig,
-			direction: "1 0 0"
-		});
-		this.el.setAttribute("raycaster__bottom", {
-			...raycasterConfig,
-			direction: "0 0 1"
-		});
-		this.el.setAttribute("raycaster__left", {
-			...raycasterConfig,
-			direction: "-1 0 0"
-		});
+		const directions = [
+			"0 0 -1",
+			"1 0 0",
+			"0 0 1",
+			"-1 0 0"
+		];
+		const fragment = document.createDocumentFragment();
+		const range    = blastRadius + 0.5; // add half a tile
 
-		
-		// remove itself after a short delay to give time for intersections to fire
-		setTimeout(() => {
-			this.el.removeAttribute("raycaster__top");
-			this.el.removeAttribute("raycaster__right");
-			this.el.removeAttribute("raycaster__bottom");
-			this.el.removeAttribute("raycaster__left");
+		for(let direction of directions){
+			const explosion = document.createElement("a-explosion");
+			explosion.setAttribute("direction", direction);
+			explosion.setAttribute("range", range);
+			fragment.appendChild(explosion);
+		}
 
-			this.el.parentElement.remove(this.el);
-		}, 100);
+		this.el.appendChild(fragment);
 	},// generateExplosion
 	explode(){
 
@@ -118,6 +90,10 @@ const Bomb = {
 		this.el.emit("bomb__explode");
 		this.el.remove(this.explosive);
 	},// explode
+
+	destroy(){
+		this.el.parentEl.removeChild(this.el);
+	},// destroy
 
 };
 

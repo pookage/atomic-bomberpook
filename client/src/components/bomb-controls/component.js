@@ -13,9 +13,9 @@ const BombControls = {
 		this.exploded          = this.exploded.bind(this);
 
 		// config
-		this.limit     = CONFIG.limit;
-		this.lifespan  = CONFIG.lifespan;
-		this.explosion = CONFIG.explosion;
+		this.limit       = CONFIG.limit;
+		this.lifespan    = CONFIG.lifespan;
+		this.blastRadius = CONFIG.blastRadius;
 
 		// state
 		this.count     = 0;
@@ -69,8 +69,10 @@ const BombControls = {
 			// configure new bomb
 			bomb.setAttribute("position", `0 ${radius} 0`);
 			bomb.setAttribute("lifespan", this.lifespan);
-			bomb.setAttribute("explosion", this.explosion);
+			bomb.setAttribute("blast-radius", this.blastRadius);
 			bomb.addEventListener("bomb__explode", this.exploded);
+
+			console.log(this.blastRadius)
 
 			this.currentTile.parentElement.appendChild(bomb);
 			this.count++;

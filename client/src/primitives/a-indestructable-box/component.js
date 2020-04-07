@@ -5,7 +5,7 @@ const IndestructableBox = {
 			el,
 		} = this;
 
-		el.classList.add("explosion__containing");
+		el.classList.add("explosion__blocking");
 	},// init
 
 

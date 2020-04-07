@@ -11,6 +11,7 @@ const DestructableBox = {
 		this.destruct = this.destruct.bind(this);
 
 		el.classList.add("explosion__destructable");
+		el.classList.add("explosion__blocking");
 		el.addEventListener("explosion__destroyed", this.destruct);
 	},// init
 

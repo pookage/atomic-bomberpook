@@ -13,7 +13,7 @@ const Player = {
 		const contents = document.importNode(template.content, true);
 
 		el.appendChild(contents);
-		el.classList.add("explosion__destructable");
+		// el.classList.add("explosion__destructable");
 
 		el.addEventListener("explosion__destroyed", this.destruct);
 	},// init
