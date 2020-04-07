@@ -10,6 +10,7 @@ template.innerHTML = `
 		<a-assets>
 			<img src="assets/3d/textures/crate.jpg" alt="Destructable block texture." id="texture__destructable__crate" />
 			<img src="assets/3d/textures/rock.jpg" alt="Indestructable block texture." id="texture__indestructable__rock" />
+			<img src="assets/3d/textures/flame__red.png" alt="Red Flame." id="texture__flame__red" />
 		</a-assets>
 
 		<a-camera

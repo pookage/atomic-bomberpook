@@ -55,8 +55,7 @@ const Explosion = {
 		const rotation  = this.directionToRotation(direction);
 
 		wrapper.setAttribute("rotation", rotation);
-		flame.setAttribute("position", `${range / 2} 0 0`);
-		flame.setAttribute("width", range);
+		
 		el.appendChild(contents)
 
 		// create the raycaster to determine what gets hit
@@ -69,6 +68,17 @@ const Explosion = {
 
 		// add listeners
 		el.addEventListener("raycaster-intersection", this.destroyIntersected);
+		this.defaultTimeout = setTimeout(() => {
+			flame.setAttribute("width", range);
+			flame.setAttribute("position", `${range / 2} 0 0`);
+
+			flame.setAttribute("animation__scale", {
+				property: "scale",
+				from: "0 0 0",
+				to: "1 1 1",
+				dur: 100
+			})
+		}, 0);
 	}, // init
 	play(){
 		const {
@@ -104,8 +114,15 @@ const Explosion = {
 			if(el.classList.contains(destructable)) el.emit("explosion__destroyed");
 			// don't continue if we hit something blocking
 			if(el.classList.contains(blocking)){
+				clearTimeout(this.defaultTimeout)
 				this.flame.setAttribute("position", `${distance / 2} 0 0`);
 				this.flame.setAttribute("width", distance);
+				this.flame.setAttribute("animation__scale", {
+					property: "scale",
+					from: "0 0 0",
+					to: "1 1 1",
+					dur: 100
+				})
 				this.el.setAttribute("raycaster", {
 					showLine: true,
 					objects: hits,

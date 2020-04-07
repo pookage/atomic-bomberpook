@@ -5,8 +5,10 @@ template.innerHTML = `
 		<a-plane
 			class="explosion__flame"
 			rotation="-90 0 0"
-			color="red"
-			width="3"
+			material="src: #texture__flame__red; transparent: true;"
+			width="0"
+			height="0.5"
+			scale="0 0 0"
 		></a-plane>
 	</a-entity>
 `;

@@ -72,8 +72,6 @@ const BombControls = {
 			bomb.setAttribute("blast-radius", this.blastRadius);
 			bomb.addEventListener("bomb__explode", this.exploded);
 
-			console.log(this.blastRadius)
-
 			this.currentTile.parentElement.appendChild(bomb);
 			this.count++;
 		}
