@@ -59,7 +59,7 @@ const Bomb = {
 		const range    = blastRadius + 0.5; // add half a tile
 
 		for(let direction of directions){
-			const explosion = document.createElement("a-explosion");
+			const explosion = document.createElement("a-bomb-explosion");
 			explosion.setAttribute("direction", direction);
 			explosion.setAttribute("range", range);
 			fragment.appendChild(explosion);
