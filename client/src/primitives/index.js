@@ -5,7 +5,7 @@ import Player, { component as PlayerComponent } from "./a-player/";
 import { 
 	primitive as Bomb,
 	component as BombComponent,
-	BombExplosion, BombExplosionComponent
+	BombExplosionFlame, BombExplosionFlameComponent
 } from "./a-bomb/";
 // import Explosion, { component as ExplosionComponent } from "./a-explosion/";
 
@@ -15,7 +15,7 @@ const components = [
 	IndestructableBoxComponent,
 	PlayerComponent,
 	BombComponent,
-	BombExplosionComponent
+	BombExplosionFlameComponent
 ];
 
 const primitives = [
@@ -24,7 +24,7 @@ const primitives = [
 	IndestructableBox,
 	Player,
 	Bomb,
-	BombExplosion
+	BombExplosionFlame
 ];
 
 export { components, primitives };

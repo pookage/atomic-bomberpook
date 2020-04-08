@@ -1,6 +1,6 @@
 import { template } from "./";
 
-const Explosion = {
+const Flame = {
 	schema: {
 		range: { 
 			type: "number",
@@ -150,4 +150,4 @@ const Explosion = {
 	}// destroy
 };
 
-export default Explosion;
+export default Flame;
