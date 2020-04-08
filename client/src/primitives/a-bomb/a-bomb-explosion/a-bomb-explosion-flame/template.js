@@ -9,6 +9,7 @@ template.innerHTML = `
 			width="0"
 			height="0.5"
 			scale="0 0 0"
+			opacity="1"
 		></a-plane>
 	</a-entity>
 `;
