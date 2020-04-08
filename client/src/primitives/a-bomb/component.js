@@ -44,19 +44,44 @@ const Bomb = {
 	// UTILS
 	// --------------------------
 	generateExplosion(){
+
 		const {
-			el,
-			data: {
-				blastRadius: radius
-			}
-		} = this;
+			blastRadius
+		} = this.data;
 
-		const explosion = document.createElement("a-bomb-explosion");
-		explosion.setAttribute("radius", radius);
+		const directions = [
+			"0 0 -1",
+			"1 0 0",
+			"0 0 1",
+			"-1 0 0"
+		];
+		const fragment = document.createDocumentFragment();
+		const range    = blastRadius + 0.5; // add half a tile
 
-		this.el.appendChild(explosion);
+		for(let direction of directions){
+			const explosion = document.createElement("a-explosion");
+			explosion.setAttribute("direction", direction);
+			explosion.setAttribute("range", range);
+			fragment.appendChild(explosion);
+		}
+
+		this.el.appendChild(fragment);
 	},// generateExplosion
 	explode(){
+
+		/*
+
+			NOTE: 
+				I dig this as an aesthetic - might be worth taking a look at...
+				https://github.com/jeromeetienne/threex.laser/blob/master/threex.laserbeam.js
+				https://github.com/jeromeetienne/threex.laser/blob/master/examples/demo.html
+				https://github.com/jeromeetienne/threex.laser/blob/master/threex.lasercooked.js
+	
+				1. adds a point light at the opint of intersection
+				2. creates a simple plane geometry with a gradient texture
+				3. plane-geometry follows the camera
+		*/
+
 		// create an explosion of raycasters
 		this.generateExplosion();
 
@@ -69,6 +94,7 @@ const Bomb = {
 	destroy(){
 		this.el.parentEl.removeChild(this.el);
 	},// destroy
+
 };
 
 export default Bomb;
