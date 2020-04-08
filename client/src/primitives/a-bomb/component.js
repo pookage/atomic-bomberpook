@@ -49,23 +49,26 @@ const Bomb = {
 			blastRadius
 		} = this.data;
 
+		// const explosion = document.createElement("a-bomb-explosion");
+		// explosion.setAttribute("radius", blastRadius);
+
 		const directions = [
 			"0 0 -1",
 			"1 0 0",
 			"0 0 1",
 			"-1 0 0"
 		];
-		const fragment = document.createDocumentFragment();
+		const explosion = document.createDocumentFragment();
 		const range    = blastRadius + 0.5; // add half a tile
 
 		for(let direction of directions){
-			const explosion = document.createElement("a-bomb-explosion-flame");
-			explosion.setAttribute("direction", direction);
-			explosion.setAttribute("range", range);
-			fragment.appendChild(explosion);
+			const flame = document.createElement("a-bomb-explosion-flame");
+			flame.setAttribute("direction", direction);
+			flame.setAttribute("range", range);
+			explosion.appendChild(flame);
 		}
 
-		this.el.appendChild(fragment);
+		this.el.appendChild(explosion);
 	},// generateExplosion
 	explode(){
 

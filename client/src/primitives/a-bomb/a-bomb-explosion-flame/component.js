@@ -41,6 +41,8 @@ const Flame = {
 			}
 		} = this;
 
+		console.log({ range })
+
 		// scope binding
 		this.destroyIntersected = this.destroyIntersected.bind(this);
 		this.destroy            = this.destroy.bind(this);
