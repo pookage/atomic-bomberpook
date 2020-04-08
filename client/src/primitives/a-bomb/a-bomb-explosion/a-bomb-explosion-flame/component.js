@@ -68,17 +68,17 @@ const BombExplosionFlame = {
 
 		// add listeners
 		el.addEventListener("raycaster-intersection", this.destroyIntersected);
-		// this.defaultTimeout = setTimeout(() => {
-		// 	// flame.setAttribute("width", range);
-		// 	// flame.setAttribute("position", `${range / 2} 0 0`);
+		this.defaultTimeout = setTimeout(() => {
+			flame.setAttribute("width", range);
+			flame.setAttribute("position", `${range / 2} 0 0`);
 
-		// 	// flame.setAttribute("animation__scale", {
-		// 	// 	property: "scale",
-		// 	// 	from: "0 0 0",
-		// 	// 	to: "1 1 1",
-		// 	// 	dur: 100
-		// 	// })
-		// }, 20);
+			flame.setAttribute("animation__scale", {
+				property: "scale",
+				from: "0 0 0",
+				to: "1 1 1",
+				dur: 100
+			})
+		}, 0);
 	}, // init
 	play(){
 		const {
@@ -99,22 +99,18 @@ const BombExplosionFlame = {
 			range 
 		} = this.data;
 
-		const { intersections } = event.detail;
-		const [ intersection ]  = intersections;
-		const destructable      = destroys.replace(".", "");
-		const blocking          = blocks.replace(".", "");
+		const { intersections }           = event.detail;
+		const [ intersection ]            = intersections;
+		const destructable         = destroys.replace(".", "");
+		const blocking             = blocks.replace(".", "");
 
-		for(let { object: { el: target }, distance } of intersections){
+		for(let { object: { el }, distance } of intersections){
 
 			// fire a destroyed event on anything destructable
-			// if(target.classList.contains(destructable)) target.emit("explosion__destroyed");
+			if(el.classList.contains(destructable)) el.emit("explosion__destroyed");
 			// don't continue if we hit something blocking
-			if(target.classList.contains(blocking)){
-
-				console.log({ distance, target })
-				target.setAttribute("material", "color:red")
-
-				// clearTimeout(this.defaultTimeout)
+			if(el.classList.contains(blocking)){
+				clearTimeout(this.defaultTimeout)
 				this.flame.setAttribute("position", `${distance / 2} 0 0`);
 				this.flame.setAttribute("width", distance);
 				this.flame.setAttribute("animation__scale", {
@@ -123,12 +119,12 @@ const BombExplosionFlame = {
 					to: "1 1 1",
 					dur: 100
 				})
-				// this.el.setAttribute("raycaster", {
-				// 	showLine: true,
-				// 	objects: hits,
-				// 	far: distance,
-				// 	direction
-				// });
+				this.el.setAttribute("raycaster", {
+					showLine: false,
+					objects: hits,
+					far: distance,
+					direction
+				});
 				break;
 			}
 		}
