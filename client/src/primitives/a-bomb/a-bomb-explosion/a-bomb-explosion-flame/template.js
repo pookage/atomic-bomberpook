@@ -1,9 +1,9 @@
 const template = document.createElement("template");
 
 template.innerHTML = `
-	<a-entity class="explosion__wrapper">
+	<a-entity class="flame__wrapper">
 		<a-plane
-			class="explosion__flame"
+			class="flame__body"
 			rotation="-90 0 0"
 			material="src: #texture__flame__red; transparent: true;"
 			width="0"

@@ -1,6 +1,6 @@
 import { template } from "./";
 
-const Explosion = {
+const BombExplosionFlame = {
 	schema: {
 		range: { 
 			type: "number",
@@ -50,8 +50,8 @@ const Explosion = {
 
 		// dom
 		const contents  = document.importNode(template.content, true);
-		const wrapper   = contents.querySelector(".explosion__wrapper");
-		const flame = this.flame = contents.querySelector(".explosion__flame");
+		const wrapper   = contents.querySelector(".flame__wrapper");
+		const flame = this.flame = contents.querySelector(".flame__body");
 		const rotation  = this.directionToRotation(direction);
 
 		wrapper.setAttribute("rotation", rotation);
@@ -87,10 +87,6 @@ const Explosion = {
 
 		this.removalTimeout = setTimeout(this.destroy, duration);
 	}, // play
-	remove(){
-		this.el.emit("explosion__end");
-		// clearTimeout(this.removalTimeout);
-	}, // remove
 
 	// EVENT HANDLING
 	// --------------------------
@@ -124,7 +120,7 @@ const Explosion = {
 					dur: 100
 				})
 				this.el.setAttribute("raycaster", {
-					showLine: true,
+					showLine: false,
 					objects: hits,
 					far: distance,
 					direction
@@ -146,8 +142,9 @@ const Explosion = {
 		}
 	}, // directionToRotation
 	destroy(){
+		this.el.emit("flame__end", {}, true);
 		this.el.parentEl.removeChild(this.el);
 	}// destroy
 };
 
-export default Explosion;
+export default BombExplosionFlame;
