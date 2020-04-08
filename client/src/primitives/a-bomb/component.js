@@ -32,12 +32,16 @@ const Bomb = {
 		this.explosive  = contents.querySelector(".bomb__explosive");
 		this.el.appendChild(contents);		
 
-		// explode after a delay
-		this.detonationDelay = setTimeout(this.explode, lifespan);
-
 		// event handling
 		this.el.addEventListener("explosion__end", this.destroy);
 	}, // init
+	play(){
+
+		const { lifespan } = this.data;
+
+		// explode after a delay
+		this.detonationDelay = setTimeout(this.explode, lifespan);
+	},//play
 
 
 
@@ -49,42 +53,12 @@ const Bomb = {
 			blastRadius
 		} = this.data;
 
-		// const explosion = document.createElement("a-bomb-explosion");
-		// explosion.setAttribute("radius", blastRadius);
-
-		const directions = [
-			"0 0 -1",
-			"1 0 0",
-			"0 0 1",
-			"-1 0 0"
-		];
-		const explosion = document.createDocumentFragment();
-		const range    = blastRadius + 0.5; // add half a tile
-
-		for(let direction of directions){
-			const flame = document.createElement("a-bomb-explosion-flame");
-			flame.setAttribute("direction", direction);
-			flame.setAttribute("range", range);
-			explosion.appendChild(flame);
-		}
+		const explosion = document.createElement("a-bomb-explosion");
+		explosion.setAttribute("radius", blastRadius);
 
 		this.el.appendChild(explosion);
 	},// generateExplosion
 	explode(){
-
-		/*
-
-			NOTE: 
-				I dig this as an aesthetic - might be worth taking a look at...
-				https://github.com/jeromeetienne/threex.laser/blob/master/threex.laserbeam.js
-				https://github.com/jeromeetienne/threex.laser/blob/master/examples/demo.html
-				https://github.com/jeromeetienne/threex.laser/blob/master/threex.lasercooked.js
-	
-				1. adds a point light at the opint of intersection
-				2. creates a simple plane geometry with a gradient texture
-				3. plane-geometry follows the camera
-		*/
-
 		// create an explosion of raycasters
 		this.generateExplosion();
 
@@ -95,6 +69,9 @@ const Bomb = {
 	},// explode
 
 	destroy(){
+
+		console.log("remove the bomb!")
+
 		this.el.parentEl.removeChild(this.el);
 	},// destroy
 

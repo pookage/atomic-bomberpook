@@ -1,4 +1,4 @@
-import { CONFIG } from "./";
+import { CONFIG, template } from "./";
 
 const BombExplosion = {
 	schema: {
@@ -19,11 +19,16 @@ const BombExplosion = {
 
 		// scope binding
 		this.generateExplosion = this.generateExplosion.bind(this);
+		this.destroy           = this.destroy.bind(this);
 
+		// dom
+		const contents  = document.importNode(template.content, true);
 		const explosion = this.generateExplosion(CONFIG.directions, radius);
+		contents.appendChild(explosion);
+		el.appendChild(contents);
 
-		el.appendChild(explosion);
-
+		// event listeners
+		el.addEventListener("flame__end", this.destroy);
 	}, // init
 
 
@@ -42,7 +47,11 @@ const BombExplosion = {
 		}
 
 		return flames;
-	}// generateExplosion
+	},// generateExplosion
+	destroy(){
+		this.el.emit("explosion__end");
+		this.el.parentEl.removeChild(this.el);
+	}// destroy
 }; // BombExplosion
 
 export default BombExplosion;

@@ -47,6 +47,7 @@ const GridLayout = {
 
 					// set the position of the cell
 					children[tileIndex].setAttribute("position", `${x} 0 ${-y}`);
+					children[tileIndex].setAttribute("data-tile", tileIndex)
 					if(cellsize !== 1) children[tileIndex].setAttribute("scale", `${cellsize} ${cellsize} ${cellsize}`);
 
 					// this can probably be derived from the row / column, but this is easier
