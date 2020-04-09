@@ -6,16 +6,19 @@ const MovementControls = {
 	// LIFECYCLE JAZZ
 	// ---------------------------------
 	init(){
-
 		// scope binding
 		this.updateMovement = this.updateMovement.bind(this);
 
 		// state
+		this.goUp      = false;
+		this.goRight   = false;
+		this.goDown    = false;
+		this.goLeft    = false;
 		this.xVelocity = 0;
 		this.zVelocity = 0;
 
 		// helpers
-		this.timeScalar;    // (number) multiplier to apply to any calculations in tick()
+		this.timeScalar; // (number) multiplier to apply to any calculations in tick()
 
 		// add listeners
 		window.addEventListener("keydown", this.updateMovement);
@@ -35,7 +38,6 @@ const MovementControls = {
 	}, // tick
 
 	remove(){
-
 		// remove listeners
 		window.removeEventListener("keydown", this.updateMovement);
 		window.removeEventListener("keyup", this.updateMovement);

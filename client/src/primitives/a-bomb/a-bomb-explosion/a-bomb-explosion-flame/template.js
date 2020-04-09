@@ -1,14 +1,20 @@
 const template = document.createElement("template");
 
 template.innerHTML = `
-	<a-entity class="explosion__wrapper">
+	<a-entity class="flame__wrapper">
 		<a-plane
-			class="explosion__flame"
+			class="flame__body"
 			rotation="-90 0 0"
-			material="src: #texture__flame__red; transparent: true;"
 			width="0"
 			height="0.5"
 			scale="0 0 0"
+			animation__scale="
+				property: scale;
+				from: 0 0 0;
+				to: 1 1 1;
+				dur: 100;
+				startEvents: flame__expand;
+			"
 		></a-plane>
 	</a-entity>
 `;
