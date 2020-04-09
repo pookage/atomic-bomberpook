@@ -6,16 +6,19 @@ const MovementControls = {
 	// LIFECYCLE JAZZ
 	// ---------------------------------
 	init(){
-
 		// scope binding
 		this.updateMovement = this.updateMovement.bind(this);
 
 		// state
+		this.goUp      = false;
+		this.goRight   = false;
+		this.goDown    = false;
+		this.goLeft    = false;
 		this.xVelocity = 0;
 		this.zVelocity = 0;
 
 		// helpers
-		this.timeScalar;    // (number) multiplier to apply to any calculations in tick()
+		this.timeScalar; // (number) multiplier to apply to any calculations in tick()
 
 		// add listeners
 		window.addEventListener("keydown", this.updateMovement);
@@ -35,7 +38,6 @@ const MovementControls = {
 	}, // tick
 
 	remove(){
-
 		// remove listeners
 		window.removeEventListener("keydown", this.updateMovement);
 		window.removeEventListener("keyup", this.updateMovement);
@@ -56,28 +58,40 @@ const MovementControls = {
 			case "ArrowRight":
 			case "d":
 			case "D": {
-				this.xVelocity = pressed ? CONFIG.velocity : 0;
+				this.goRight   = pressed;
+				this.xVelocity = pressed ? CONFIG.velocity : (
+					this.goLeft ? -CONFIG.velocity : 0
+				);
 				break;
 			}
 
 			case "ArrowLeft":
 			case "a":
 			case "A": {
-				this.xVelocity = pressed ? -CONFIG.velocity : 0;
+				this.goLeft    = pressed;
+				this.xVelocity = pressed ? -CONFIG.velocity : (
+					this.goRight ? CONFIG.velocity : 0
+				);
 				break;
 			}
 
 			case "ArrowUp":
 			case "w":
 			case "W": {
-				this.zVelocity = pressed ? -CONFIG.velocity : 0;
+				this.goUp      = pressed;
+				this.zVelocity = pressed ? -CONFIG.velocity : (
+					this.goDown ? CONFIG.velocity : 0
+				);
 				break;
 			}
 
 			case "ArrowDown":
 			case "s":
 			case "S": {
-				this.zVelocity = pressed ? CONFIG.velocity : 0;
+				this.goDown    = pressed;
+				this.zVelocity = pressed ? CONFIG.velocity : (
+					this.goUp ? -CONFIG.velocity : 0
+				);
 				break;
 			}
 		}

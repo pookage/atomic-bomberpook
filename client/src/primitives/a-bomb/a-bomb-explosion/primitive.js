@@ -1,10 +1,9 @@
 const primitive = {
 	defaultComponents: {
-		bomb: {},
+		"bomb-explosion": {}
 	},
 	mappings: {
-		lifespan: "bomb.lifespan",
-		"blast-radius": "bomb.blastRadius"
+		radius: "bomb-explosion.radius"
 	}
 };
 

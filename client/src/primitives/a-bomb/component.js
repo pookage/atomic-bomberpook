@@ -3,7 +3,7 @@ import { template } from "./";
 const Bomb = {
 	schema: {
 		lifespan: { type: "number" },
-		explosion: { type: "number"}
+		blastRadius: { type: "number"}
 	},
 
 	// LIFECYCLE JAZZ
@@ -11,100 +11,82 @@ const Bomb = {
 	init(){
 		const {
 			el, 
-			data
+			data: {
+				lifespan,   // (number) ms until the bomb explodes of its own accord
+				blastRadius // (number) of tiles that the bomb will explode in each direction
+			}
 		} = this;
-
-		const {
-			lifespan,
-			explosion: explosionRadius
-		} = data;
 
 		// scope binding
 		this.explode            = this.explode.bind(this);
 		this.generateExplosion  = this.generateExplosion.bind(this);
-		this.destroyIntersected = this.destroyIntersected.bind(this);
-
-		// config
-		this.impassable = ["A-DESTRUCTABLE-BOX", "A-INDESTRUCTABLE-BOX"];
+		this.destroy            = this.destroy.bind(this);
 	
-		// add template to the element
+		// add the bomb geometry to the entity
 		const contents  = document.importNode(template.content, true);
-		this.explosive  = contents.querySelector(".bomb__explosive");
-		this.el.appendChild(contents);
+		this.EXPLOSIVE  = contents.querySelector(".bomb__explosive");
+		el.appendChild(contents);
 
-		// add listeners
-		this.el.addEventListener("raycaster-intersection", this.destroyIntersected);
-
-		// helpers
-		this.detonationDelay = setTimeout(this.explode, lifespan);
+		// remove the bomb once the explosion is over
+		el.addEventListener("explosion__end", this.destroy);
+		// explode the bomb if it gets hit by an explosion
+		el.addEventListener("explosion__destroyed", this.explode);
 	}, // init
 
-	// EVENT HANDLING
-	// --------------------------
-	destroyIntersected(event){
-		const { intersections } = event.detail;
-		const [ intersection ]  = intersections;
+	play(){
+		const { 
+			lifespan // (number) ms until the bomb explodes of its own accord
+		} = this.data;
 
-		for(let { object: { el }, distance } of intersections){
-			// fire a destroyed event on anything destructable
-			if(el.classList.contains("explosion__destructable")){
-				el.emit("explosion__destroyed");
-			}
-			// don't continue if we hit something impassable
-			if(this.impassable.indexOf(el.tagName) > -1) break;
-		}
-	}, // destroyIntersected
+		// explode after a delay
+		this.detonationDelay = setTimeout(this.explode, lifespan);
+	},//play
+
+	remove(){
+
+		clearTimeout(this.detonationDelay);
+	}, // remove
+
 
 	// UTILS
 	// --------------------------
 	generateExplosion(){
+		const {
+			blastRadius // (number) of tiles that the bomb will explode in each direction
+		} = this.data;
 
-		// define parameters of each raycaster
-		const raycasterConfig = {
-			showLine: true,
-			objects: ".explosion__destructable, .explosion__containing",
-			far: this.data.explosion,
-		};
+		const explosion = document.createElement("a-bomb-explosion");
+		explosion.setAttribute("radius", blastRadius);
 
-		// create a raycaster in every direction
-		this.el.setAttribute("raycaster__top", {
-			...raycasterConfig,
-			direction: "0 0 -1"
-		});
-		this.el.setAttribute("raycaster__right", {
-			...raycasterConfig,
-			direction: "1 0 0"
-		});
-		this.el.setAttribute("raycaster__bottom", {
-			...raycasterConfig,
-			direction: "0 0 1"
-		});
-		this.el.setAttribute("raycaster__left", {
-			...raycasterConfig,
-			direction: "-1 0 0"
-		});
-
-		
-		// remove itself after a short delay to give time for intersections to fire
-		setTimeout(() => {
-			this.el.removeAttribute("raycaster__top");
-			this.el.removeAttribute("raycaster__right");
-			this.el.removeAttribute("raycaster__bottom");
-			this.el.removeAttribute("raycaster__left");
-
-			this.el.parentElement.remove(this.el);
-		}, 100);
+		return explosion;
 	},// generateExplosion
 	explode(){
+		const { 
+			el // (HTMLElement) that this component is attached to
+		} = this;
+
+		// prevent the bomb from auto-exploding if it hasn't already
+		clearTimeout(this.detonationDelay);
+
+		// prevent this bomb from being exploded multiple times
+		el.removeEventListener("explosion__destroyed", this.explode);
+
 		// create an explosion of raycasters
-		this.generateExplosion();
+		const explosion = this.generateExplosion();
+		el.appendChild(explosion);
+		
+		// let the player know that this bomb has detonated
+		el.emit("bomb__explode");
 
 		// remove the bomb
-		this.explosive.setAttribute("scale", "0 0 0");
-		this.el.emit("bomb__explode");
-		this.el.remove(this.explosive);
+		this.EXPLOSIVE.setAttribute("scale", "0 0 0");
+		el.remove(this.EXPLOSIVE);
 	},// explode
 
+	destroy(){
+		const { el } = this;
+		el.parentEl.removeChild(el);
+	},// destroy
 };
 
 export default Bomb;

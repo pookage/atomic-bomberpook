@@ -2,14 +2,21 @@ import Cell, { component as CellComponent } from "./a-cell/";
 import DestructableBox, { component as DestructableBoxComponent } from "./a-destructable-box/";
 import IndestructableBox, { component as IndestructableBoxComponent } from "./a-indestructable-box/";
 import Player, { component as PlayerComponent } from "./a-player/";
-import Bomb, { component as BombComponent } from "./a-bomb/";
+import { 
+	primitive as Bomb,
+	component as BombComponent,
+	BombExplosion, BombExplosionComponent,
+	BombExplosionFlame, BombExplosionFlameComponent
+} from "./a-bomb/";
 
 const components = [
 	CellComponent,
 	DestructableBoxComponent,
 	IndestructableBoxComponent,
 	PlayerComponent,
-	BombComponent
+	BombComponent,
+	BombExplosionComponent,
+	BombExplosionFlameComponent
 ];
 
 const primitives = [
@@ -17,7 +24,9 @@ const primitives = [
 	DestructableBox,
 	IndestructableBox,
 	Player,
-	Bomb
+	Bomb,
+	BombExplosion,
+	BombExplosionFlame
 ];
 
 export { components, primitives };

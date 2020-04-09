@@ -6,13 +6,16 @@ template.innerHTML = `
 	<a-scene 
 		class="${s.scene}"
 		physics="debug: true; gravity: 0;"
+		stats
 	>
 		<a-assets>
 			<img src="assets/3d/textures/crate.jpg" alt="Destructable block texture." id="texture__destructable__crate" />
 			<img src="assets/3d/textures/rock.jpg" alt="Indestructable block texture." id="texture__indestructable__rock" />
+			<img src="assets/3d/textures/flame__red.png" alt="Red Flame." id="texture__flame__red" />
 		</a-assets>
 
 		<a-camera
+			id="camera__top"
 			position="0 10 0.0"
 			rotation="-90 0 0"
 			fov="60"
@@ -28,7 +31,6 @@ template.innerHTML = `
 			position="0 0 0"
 			grid-layout="rows: 9; columns: 9;"
 		>
-
 			<a-cell destructable="false"></a-cell>
 			<a-cell destructable="false"></a-cell>
 			<a-cell destructable="false"></a-cell>

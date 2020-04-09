@@ -10,7 +10,12 @@ const DestructableBox = {
 		// scope binding
 		this.destruct = this.destruct.bind(this);
 
+		// mark this box as destructable
 		el.classList.add("explosion__destructable");
+		// mark this box as one that will prevent explosions from passing it
+		el.classList.add("explosion__blocking");
+
+		// remove the box when it is hit by an explosion
 		el.addEventListener("explosion__destroyed", this.destruct);
 	},// init
 
