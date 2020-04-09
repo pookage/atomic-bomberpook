@@ -56,28 +56,40 @@ const MovementControls = {
 			case "ArrowRight":
 			case "d":
 			case "D": {
-				this.xVelocity = pressed ? CONFIG.velocity : 0;
+				this.goRight   = pressed;
+				this.xVelocity = pressed ? CONFIG.velocity : (
+					this.goLeft ? -CONFIG.velocity : 0
+				);
 				break;
 			}
 
 			case "ArrowLeft":
 			case "a":
 			case "A": {
-				this.xVelocity = pressed ? -CONFIG.velocity : 0;
+				this.goLeft    = pressed;
+				this.xVelocity = pressed ? -CONFIG.velocity : (
+					this.goRight ? CONFIG.velocity : 0
+				);
 				break;
 			}
 
 			case "ArrowUp":
 			case "w":
 			case "W": {
-				this.zVelocity = pressed ? -CONFIG.velocity : 0;
+				this.goUp      = pressed;
+				this.zVelocity = pressed ? -CONFIG.velocity : (
+					this.goDown ? CONFIG.velocity : 0
+				);
 				break;
 			}
 
 			case "ArrowDown":
 			case "s":
 			case "S": {
-				this.zVelocity = pressed ? CONFIG.velocity : 0;
+				this.goDown    = pressed;
+				this.zVelocity = pressed ? CONFIG.velocity : (
+					this.goUp ? -CONFIG.velocity : 0
+				);
 				break;
 			}
 		}

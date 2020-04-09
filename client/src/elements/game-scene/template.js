@@ -6,6 +6,7 @@ template.innerHTML = `
 	<a-scene 
 		class="${s.scene}"
 		physics="debug: true; gravity: 0;"
+		stats
 	>
 		<a-assets>
 			<img src="assets/3d/textures/crate.jpg" alt="Destructable block texture." id="texture__destructable__crate" />

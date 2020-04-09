@@ -5,7 +5,7 @@ template.innerHTML = `
 		radius="0.7"
 		color="#fff"
 		position="0 0 0"
-		material="src: #texture__flame__red; transparent: true; shader: flat;"
+		material="src: #texture__flame__red; transparent: false; shader: flat;"
 		animation__scale="
 			property: scale;
 			from: 0.8 0.8 0.8;

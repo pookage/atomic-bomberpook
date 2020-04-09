@@ -41,8 +41,6 @@ const Flame = {
 			}
 		} = this;
 
-		console.log({ range })
-
 		// scope binding
 		this.destroyIntersected = this.destroyIntersected.bind(this);
 		this.destroy            = this.destroy.bind(this);
@@ -129,6 +127,7 @@ const Flame = {
 					showLine: false,
 					objects: hits,
 					far: distance,
+					interval: 100,
 					direction
 				});
 				break;
@@ -166,6 +165,7 @@ const Flame = {
 				showLine: false,
 				objects: hits,
 				far: range,
+				interval: 100,
 				direction
 			});
 		}

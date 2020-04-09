@@ -30,10 +30,11 @@ const Bomb = {
 		// add template to the element
 		const contents  = document.importNode(template.content, true);
 		this.explosive  = contents.querySelector(".bomb__explosive");
-		this.el.appendChild(contents);		
+		el.appendChild(contents);
 
 		// event handling
-		this.el.addEventListener("explosion__end", this.destroy);
+		el.addEventListener("explosion__end", this.destroy);
+		el.addEventListener("explosion__destroyed", this.explode);
 	}, // init
 	play(){
 
@@ -59,6 +60,10 @@ const Bomb = {
 		this.el.appendChild(explosion);
 	},// generateExplosion
 	explode(){
+
+		this.el.removeEventListener("explosion__destroyed", this.explode);
+		clearTimeout(this.detonationDelay);
+
 		// create an explosion of raycasters
 		this.generateExplosion();
 

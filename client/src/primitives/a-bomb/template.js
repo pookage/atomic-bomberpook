@@ -2,7 +2,7 @@ const template = document.createElement("template");
 
 template.innerHTML = `
 	<a-sphere 
-		class="bomb__explosive"
+		class="bomb__explosive explosion__destructable"
 		radius="0.35"
 		color="#111"
 		animation="

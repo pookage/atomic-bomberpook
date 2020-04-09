@@ -1,5 +1,5 @@
 {
-	"limit": 1,
-	"lifespan": 2500,
-	"blastRadius": 3
+	"limit": 15,
+	"lifespan": 5000,
+	"blastRadius": 2
 }
