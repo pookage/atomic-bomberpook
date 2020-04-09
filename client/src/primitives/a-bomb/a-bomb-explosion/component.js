@@ -12,6 +12,9 @@ const BombExplosion = {
 	// --------------------------------------
 	init(){
 
+		// follow this tutorial
+		//https://www.clicktorelease.com/blog/vertex-displacement-noise-3d-webgl-glsl-three-js/
+
 		const {
 			el,
 			data: { radius }
