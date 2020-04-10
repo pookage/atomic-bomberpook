@@ -1,5 +1,5 @@
 import { UTILS } from "SHARED/";
-import { CONFIG } from "./";
+import { CONFIG, template } from "./";
 
 const Powerup = {
 	schema: {
@@ -23,16 +23,24 @@ const Powerup = {
 		this.destroy            = this.destroy.bind(this);
 		this.generateRandomType = this.generateRandomType.bind(this);
 
+
+		// create the powerup model
+		const contents = document.importNode(template.content, true);
+		const model    = contents.querySelector(".pickup__entity");
+
 		const { name, material } = this.generateRandomType(CONFIG.types);
 
 		// update the type if we had to add it ourselves
 		if(!definedType) el.setAttribute("type", name);
 
 		// apply a texture to match the given type
-		el.setAttribute("material", `color: ${material}`);
+		model.setAttribute("material", `color: ${material}`);
 
 		// pick-up this powerup when you walk into it
 		el.addEventListener("collide", this.pickup);
+
+		// add template to the DOM
+		el.appendChild(contents);
 	}, // init
 
 	// EVENT HANDLING
