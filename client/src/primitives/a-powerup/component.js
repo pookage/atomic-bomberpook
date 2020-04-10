@@ -20,7 +20,7 @@ const Powerup = {
 
 		// scope binding
 		this.pickup             = this.pickup.bind(this);
-		this.destroy            = this.destroy.bind(this);
+		this.destruct           = this.destruct.bind(this);
 		this.generateRandomType = this.generateRandomType.bind(this);
 
 
@@ -38,6 +38,9 @@ const Powerup = {
 
 		// pick-up this powerup when you walk into it
 		el.addEventListener("collide", this.pickup);
+
+		// destroy the pickup if it's hit by an explosion
+		el.addEventListener("explosion__destroyed", this.destruct);
 
 		// add template to the DOM
 		el.appendChild(contents);
@@ -60,7 +63,7 @@ const Powerup = {
 		el.removeEventListener("collide", this.pickup);
 
 		player.emit("powerup__collect", details);
-		this.destroy();
+		this.destruct();
 	},// pickup
 
 	// UTILS
@@ -82,10 +85,10 @@ const Powerup = {
 		}
 		return type;
 	},// generateRandomType
-	destroy(){
+	destruct(){
 		const { el } = this;
 		el.parentElement.removeChild(el);
-	}// destroy	
+	}// destruct	
 };
 
 export default Powerup;

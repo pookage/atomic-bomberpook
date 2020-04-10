@@ -3,7 +3,9 @@ const template = document.createElement("template");
 template.innerHTML = `
 	<a-box 
 		class="pickup__entity explosion__destructable explosion__blocking"
-		scale="0.5 0.5 0.5"
+		height="0.5"
+		width="0.5"
+		depth="0.5"
 		rotation="45 0 45"
 		position="0 0.5 0"
 		animation="

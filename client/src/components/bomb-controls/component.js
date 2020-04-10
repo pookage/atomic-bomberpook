@@ -81,9 +81,6 @@ const BombControls = {
 			type
 		} = event.detail;
 
-		console.log("adding", type)
-
-
 		switch(type){
 			case "extra-bomb":
 				this.limit = Math.min(this.limit + 1, CONFIG.maxLimit);

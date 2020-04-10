@@ -107,7 +107,7 @@ const Flame = {
 
 		// get the entities that were hit
 		const { intersections } = event.detail;
-		const [ intersection ]  = intersections;
+
 
 		// get the element and distance of everything that the raycaster hit...
 		for(let { object: { el: target }, distance } of intersections){
