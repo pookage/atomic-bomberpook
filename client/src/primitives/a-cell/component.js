@@ -18,6 +18,9 @@ const Cell = {
 			}
 		} = this;
 
+		// scope binding
+		this.generatePowerup = this.generatePowerup.bind(this);
+
 		// import the default contents of the cell
 		const contents = document.importNode(template.content, true);
 
@@ -26,11 +29,25 @@ const Cell = {
 			const boxType = destructable ? "a-destructable-box" : "a-indestructable-box";
 			const box     = document.createElement(boxType);
 
+			if(destructable){
+				box.addEventListener("destructable_box__destroyed", this.generatePowerup);
+			}
+
 			contents.appendChild(box);
 		}
 
 		el.appendChild(contents);
-	}// init
+	},// init
+
+	// EVENT HANDLERS
+	// ------------------------------
+	generatePowerup(){
+		const { el } = this;
+
+		const powerup = document.createElement("a-powerup");
+
+		el.appendChild(powerup);
+	}// generatePowerup
 };
 
 export default Cell;

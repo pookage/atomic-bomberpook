@@ -9,6 +9,7 @@ const Player = {
 
 		// scope binding
 		this.destruct = this.destruct.bind(this);
+		this.applyPowerup = this.applyPowerup.bind(this);
 
 		// add the player model to the entity
 		const contents = document.importNode(template.content, true);
@@ -17,15 +18,22 @@ const Player = {
 		// remove this entity when it's hit by an explosion
 		// NOTE: the model is destructable, the wrapper isn't
 		el.addEventListener("explosion__destroyed", this.destruct);
+
+		// apply the effects of any collected powerup
+		el.addEventListener("powerup__collect", this.applyPowerup);
 	},// init
 
-	// UTILS
+	// EVENT HANDLING
 	// --------------------------
-	destruct(){
+	destruct(event){
 		const { el } = this;
 
 		el.parentEl.removeChild(el);
-	}// destruct
+	},// destruct
+
+	applyPowerup(event){
+		console.log({ event });
+	}// applyPowerup
 };
 
 export default Player;
