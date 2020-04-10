@@ -21,6 +21,10 @@ const primitive = {
 			dur: 5000,
 			loop: true
 		}
+	},
+	mappings: {
+		"type": "powerup.type",
+		"value": "powerup.value"
 	}
 };
 

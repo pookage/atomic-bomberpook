@@ -6,14 +6,21 @@ const MovementControls = {
 	// LIFECYCLE JAZZ
 	// ---------------------------------
 	init(){
+
+		const {
+			el
+		} = this;
+
 		// scope binding
 		this.updateMovement = this.updateMovement.bind(this);
+		this.applyPowerup   = this.applyPowerup.bind(this);
 
 		// state
 		this.goUp      = false;
 		this.goRight   = false;
 		this.goDown    = false;
 		this.goLeft    = false;
+		this.velocity  = CONFIG.velocity;
 		this.xVelocity = 0;
 		this.zVelocity = 0;
 
@@ -23,6 +30,9 @@ const MovementControls = {
 		// add listeners
 		window.addEventListener("keydown", this.updateMovement);
 		window.addEventListener("keyup", this.updateMovement);
+
+		// apply the effects of any collected powerup
+		el.addEventListener("powerup__collect", this.applyPowerup);
 	},// init
 
 	tick(time, deltaTime){
@@ -59,8 +69,8 @@ const MovementControls = {
 			case "d":
 			case "D": {
 				this.goRight   = pressed;
-				this.xVelocity = pressed ? CONFIG.velocity : (
-					this.goLeft ? -CONFIG.velocity : 0
+				this.xVelocity = pressed ? this.velocity : (
+					this.goLeft ? -this.velocity : 0
 				);
 				break;
 			}
@@ -69,8 +79,8 @@ const MovementControls = {
 			case "a":
 			case "A": {
 				this.goLeft    = pressed;
-				this.xVelocity = pressed ? -CONFIG.velocity : (
-					this.goRight ? CONFIG.velocity : 0
+				this.xVelocity = pressed ? -this.velocity : (
+					this.goRight ? this.velocity : 0
 				);
 				break;
 			}
@@ -79,8 +89,8 @@ const MovementControls = {
 			case "w":
 			case "W": {
 				this.goUp      = pressed;
-				this.zVelocity = pressed ? -CONFIG.velocity : (
-					this.goDown ? CONFIG.velocity : 0
+				this.zVelocity = pressed ? -this.velocity : (
+					this.goDown ? this.velocity : 0
 				);
 				break;
 			}
@@ -89,13 +99,27 @@ const MovementControls = {
 			case "s":
 			case "S": {
 				this.goDown    = pressed;
-				this.zVelocity = pressed ? CONFIG.velocity : (
-					this.goUp ? -CONFIG.velocity : 0
+				this.zVelocity = pressed ? this.velocity : (
+					this.goUp ? -this.velocity : 0
 				);
 				break;
 			}
 		}
-	}, // updateMovement
+	},// updateMovement
+	applyPowerup(event){
+		const { 
+			type // (string) what kind of powerup was collected
+		} = event.detail;
+
+		switch(type){
+			case "extra-speed":
+				this.velocity = Math.min(this.velocity + 1, CONFIG.maxVelocity);
+				break;
+			case "max-speed":
+				this.velocity = CONFIG.maxVelocity;
+				break;
+		}
+	}// applyPowerup
 };
 
 export default MovementControls;

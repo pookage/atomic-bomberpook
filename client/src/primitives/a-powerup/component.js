@@ -1,13 +1,11 @@
+import { UTILS } from "SHARED/";
+import { CONFIG } from "./";
+
 const Powerup = {
 	schema: {
 		type: {
-			type: "string",
-			default: "extra-bomb"
+			type: "string"
 		},
-		value: {
-			type: "number",
-			default: 1
-		}
 	},
 
 	// LIFECYCLE JAZZ
@@ -16,17 +14,25 @@ const Powerup = {
 		const {
 			el,
 			data: {
-				type
+				type: definedType
 			}
 		} = this;
 
 		// scope binding
-		this.pickup  = this.pickup.bind(this);
-		this.destroy = this.destroy.bind(this);
+		this.pickup             = this.pickup.bind(this);
+		this.destroy            = this.destroy.bind(this);
+		this.generateRandomType = this.generateRandomType.bind(this);
+
+		const { name, material } = this.generateRandomType(CONFIG.types);
+
+		// update the type if we had to add it ourselves
+		if(!definedType) el.setAttribute("type", name);
+
+		// apply a texture to match the given type
+		el.setAttribute("material", `color: ${material}`);
 
 		el.addEventListener("collide", this.pickup);
 	}, // init
-
 
 	// EVENT HANDLING
 	// ---------------------------
@@ -34,13 +40,12 @@ const Powerup = {
 		const { 
 			el,
 			data: {
-				type,
-				value
+				type
 			}
 		} = this;
 		const { el: player } = event.detail.body;
-		const details        = {
-			type, value
+		const details = {
+			type  // (string) the type of powerup that was collected
 		};
 
 		el.removeEventListener("collide", this.pickup);
@@ -51,6 +56,10 @@ const Powerup = {
 
 	// UTILS
 	// --------------------------
+	generateRandomType(types){
+		const index = UTILS.randomInt(0, types.length-1);
+		return types[index];
+	},// generateRandomType
 	destroy(){
 		const { el } = this;
 		el.parentElement.removeChild(el);

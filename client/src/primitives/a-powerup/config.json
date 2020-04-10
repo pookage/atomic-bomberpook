@@ -1,0 +1,23 @@
+{
+	"types": [
+		{
+			"name": "extra-bomb",
+			"material": "#68c0e3"
+		}, {
+			"name": "max-bombs",
+			"material": "#1b63cf"
+		}, {
+			"name": "extra-flame",
+			"material": "#c91616"
+		}, {
+			"name": "max-flame",
+			"material": "#ff4800"
+		}, {
+			"name": "extra-speed",
+			"material": "#bfcf65"
+		}, {
+			"name": "max-speed",
+			"material": "#c3e30e"
+		}
+	]
+}

@@ -7,6 +7,9 @@ const Cell = {
 		},
 		empty: {
 			default: false
+		},
+		reward: {
+			default: 0.8
 		}
 	},
 	init(){
@@ -29,6 +32,7 @@ const Cell = {
 			const boxType = destructable ? "a-destructable-box" : "a-indestructable-box";
 			const box     = document.createElement(boxType);
 
+			// if it's destructable generate a powerup when it's destroyed
 			if(destructable){
 				box.addEventListener("destructable_box__destroyed", this.generatePowerup);
 			}
@@ -42,13 +46,20 @@ const Cell = {
 	// EVENT HANDLERS
 	// ------------------------------
 	generatePowerup(){
-		const { el } = this;
+		const { 
+			el,
+			data: {
+				reward // (number)[0-1] liklihood of generating a powerup
+			}
+		} = this;
 
-		const powerup = document.createElement("a-powerup");
-		powerup.setAttribute("type", "extra-bomb");
-		powerup.setAttribute("value", 1);
+		// roll a dice to determine if the block generates a powerup
+		const rewardRoll = Math.random();
 
-		el.appendChild(powerup);
+		if(rewardRoll < reward){
+			const powerup  = document.createElement("a-powerup");
+			el.appendChild(powerup);
+		}
 	}// generatePowerup
 };
 

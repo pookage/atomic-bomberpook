@@ -78,14 +78,23 @@ const BombControls = {
 	},// exploded
 	applyPowerup(event){
 		const { 
-			type, 
-			value 
+			type
 		} = event.detail;
 
 
 		switch(type){
 			case "extra-bomb":
-				this.limit  = Math.min(this.limit + 1, CONFIG.maxLimit);
+				this.limit = Math.min(this.limit + 1, CONFIG.maxLimit);
+				break;
+			case "max-bomb":
+				this.limit = CONFIG.maxLimit;
+				break;
+
+			case "extra-flame":
+				this.blastRadius = Math.min(this.blastRadius + 1, CONFIG.blastRadius);
+				break;
+			case "max-flame":
+				this.blastRadius = CONFIG.maxBlastRadius;
 				break;
 		}
 	},// applyPowerup
