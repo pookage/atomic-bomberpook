@@ -45,6 +45,8 @@ const Cell = {
 		const { el } = this;
 
 		const powerup = document.createElement("a-powerup");
+		powerup.setAttribute("type", "extra-bomb");
+		powerup.setAttribute("value", 1);
 
 		el.appendChild(powerup);
 	}// generatePowerup
