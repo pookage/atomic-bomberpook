@@ -81,6 +81,8 @@ const BombControls = {
 			type
 		} = event.detail;
 
+		console.log("adding", type)
+
 
 		switch(type){
 			case "extra-bomb":
@@ -91,8 +93,9 @@ const BombControls = {
 				break;
 
 			case "extra-flame":
-				this.blastRadius = Math.min(this.blastRadius + 1, CONFIG.blastRadius);
+				this.blastRadius = Math.min(this.blastRadius + 1, CONFIG.maxBlastRadius);
 				break;
+
 			case "max-flame":
 				this.blastRadius = CONFIG.maxBlastRadius;
 				break;

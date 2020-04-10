@@ -2,22 +2,28 @@
 	"types": [
 		{
 			"name": "extra-bomb",
-			"material": "#68c0e3"
-		}, {
-			"name": "max-bombs",
-			"material": "#1b63cf"
+			"material": "#68c0e3",
+			"max": {
+				"name": "max-bombs",
+				"material": "#1b63cf",
+				"chance": 0.01
+			}
 		}, {
 			"name": "extra-flame",
-			"material": "#c91616"
-		}, {
-			"name": "max-flame",
-			"material": "#ff4800"
+			"material": "#c91616",
+			"max": {
+				"name": "max-flame",
+				"material": "#ff4800",
+				"chance": 0.01
+			}
 		}, {
 			"name": "extra-speed",
-			"material": "#bfcf65"
-		}, {
-			"name": "max-speed",
-			"material": "#c3e30e"
+			"material": "#bfcf65",
+			"max": {
+				"name": "max-speed",
+				"material": "#c3e30e",
+				"chance": 0.01
+			}
 		}
 	]
 }

@@ -31,6 +31,7 @@ const Powerup = {
 		// apply a texture to match the given type
 		el.setAttribute("material", `color: ${material}`);
 
+		// pick-up this powerup when you walk into it
 		el.addEventListener("collide", this.pickup);
 	}, // init
 
@@ -57,8 +58,21 @@ const Powerup = {
 	// UTILS
 	// --------------------------
 	generateRandomType(types){
-		const index = UTILS.randomInt(0, types.length-1);
-		return types[index];
+		const index     = UTILS.randomInt(0, types.length-1);
+		const powerup   = types[index];
+
+		let type = powerup;
+
+		// if there's a 'max' variant to the powerup, roll for it
+		if(powerup.max){
+			const { chance } = powerup.max;
+			const bonusRoll = Math.random();
+
+			if(bonusRoll < chance){
+				type = powerup.max;
+			}
+		}
+		return type;
 	},// generateRandomType
 	destroy(){
 		const { el } = this;
