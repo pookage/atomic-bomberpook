@@ -1,4 +1,5 @@
 {
 	"targetFPS": 16.67,
-	"velocity": 5
+	"velocity": 3,
+	"maxVelocity": 7
 }

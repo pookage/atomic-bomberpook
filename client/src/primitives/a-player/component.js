@@ -17,15 +17,16 @@ const Player = {
 		// remove this entity when it's hit by an explosion
 		// NOTE: the model is destructable, the wrapper isn't
 		el.addEventListener("explosion__destroyed", this.destruct);
+
 	},// init
 
-	// UTILS
+	// EVENT HANDLING
 	// --------------------------
-	destruct(){
+	destruct(event){
 		const { el } = this;
 
 		el.parentEl.removeChild(el);
-	}// destruct
+	},// destruct
 };
 
 export default Player;

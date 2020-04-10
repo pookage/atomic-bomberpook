@@ -16,6 +16,7 @@ const BombControls = {
 		this.dropBomb          = this.dropBomb.bind(this);
 		this.updateCurrentTile = this.updateCurrentTile.bind(this);
 		this.exploded          = this.exploded.bind(this);
+		this.applyPowerup = this.applyPowerup.bind(this);
 
 		// config
 		this.limit       = CONFIG.limit;
@@ -33,6 +34,9 @@ const BombControls = {
 
 		// update internal ref for current tile whenever the player moves onto a new one
 		el.addEventListener("raycaster-intersection", this.updateCurrentTile);
+
+		// apply the effects of any collected powerup
+		el.addEventListener("powerup__collect", this.applyPowerup);
 	}, // remove
 	remove(){
 
@@ -72,6 +76,28 @@ const BombControls = {
 		// clear-up space for another bomb
 		this.count--;
 	},// exploded
+	applyPowerup(event){
+		const { 
+			type
+		} = event.detail;
+
+		switch(type){
+			case "extra-bomb":
+				this.limit = Math.min(this.limit + 1, CONFIG.maxLimit);
+				break;
+			case "max-bomb":
+				this.limit = CONFIG.maxLimit;
+				break;
+
+			case "extra-flame":
+				this.blastRadius = Math.min(this.blastRadius + 1, CONFIG.maxBlastRadius);
+				break;
+
+			case "max-flame":
+				this.blastRadius = CONFIG.maxBlastRadius;
+				break;
+		}
+	},// applyPowerup
 
 	// UTILS
 	// ------------------------------

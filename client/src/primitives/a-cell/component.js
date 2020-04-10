@@ -7,6 +7,9 @@ const Cell = {
 		},
 		empty: {
 			default: false
+		},
+		reward: {
+			default: 0.8
 		}
 	},
 	init(){
@@ -18,6 +21,9 @@ const Cell = {
 			}
 		} = this;
 
+		// scope binding
+		this.generatePowerup = this.generatePowerup.bind(this);
+
 		// import the default contents of the cell
 		const contents = document.importNode(template.content, true);
 
@@ -26,11 +32,35 @@ const Cell = {
 			const boxType = destructable ? "a-destructable-box" : "a-indestructable-box";
 			const box     = document.createElement(boxType);
 
+			// if it's destructable generate a powerup when it's destroyed
+			if(destructable){
+				box.addEventListener("destructable_box__destroyed", this.generatePowerup);
+			}
+
 			contents.appendChild(box);
 		}
 
 		el.appendChild(contents);
-	}// init
+	},// init
+
+	// EVENT HANDLERS
+	// ------------------------------
+	generatePowerup(){
+		const { 
+			el,
+			data: {
+				reward // (number)[0-1] liklihood of generating a powerup
+			}
+		} = this;
+
+		// roll a dice to determine if the block generates a powerup
+		const rewardRoll = Math.random();
+
+		if(rewardRoll < reward){
+			const powerup  = document.createElement("a-powerup");
+			el.appendChild(powerup);
+		}
+	}// generatePowerup
 };
 
 export default Cell;

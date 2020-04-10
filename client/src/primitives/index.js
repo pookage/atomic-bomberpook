@@ -8,6 +8,7 @@ import {
 	BombExplosion, BombExplosionComponent,
 	BombExplosionFlame, BombExplosionFlameComponent
 } from "./a-bomb/";
+import Powerup, { component as PowerupComponent } from "./a-powerup/";
 
 const components = [
 	CellComponent,
@@ -16,7 +17,8 @@ const components = [
 	PlayerComponent,
 	BombComponent,
 	BombExplosionComponent,
-	BombExplosionFlameComponent
+	BombExplosionFlameComponent,
+	PowerupComponent
 ];
 
 const primitives = [
@@ -26,7 +28,8 @@ const primitives = [
 	Player,
 	Bomb,
 	BombExplosion,
-	BombExplosionFlame
+	BombExplosionFlame,
+	Powerup
 ];
 
 export { components, primitives };

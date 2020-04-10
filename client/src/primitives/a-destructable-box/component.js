@@ -23,6 +23,7 @@ const DestructableBox = {
 	// --------------------------
 	destruct(){
 		const { el } = this;
+		el.emit("destructable_box__destroyed");
 		// remove from the scene
 		el.parentElement.removeChild(el);
 	}// destruct
