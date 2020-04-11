@@ -13,9 +13,6 @@ import primitives, { components as primitiveComponents } from "./primitives/";
 // register all of the custom elements
 for(let element of elements){
 	for(let [ name, Defintion ] of Object.entries(element)){
-
-		console.log(name, Defintion)
-
 		window.customElements.define(name, Defintion);
 	}
 }
