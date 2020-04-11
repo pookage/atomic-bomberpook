@@ -1,7 +1,7 @@
 const template = document.createElement("template");
 
 template.innerHTML = `
-	<a-sphere
+	<!-- <a-sphere
 		radius="0.7"
 		color="#fff"
 		position="0 0 0"
@@ -15,6 +15,10 @@ template.innerHTML = `
 			dur: 500;
 			easing: easeOutQuint;
 		"
+	></a-sphere> -->
+	<a-sphere
+		class="explosion__ball"
+		material="shader: explosion-shader; tExplosion: assets/3d/shaders/explosion.png"
 	></a-sphere>
 `;
 

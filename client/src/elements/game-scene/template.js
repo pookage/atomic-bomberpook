@@ -22,6 +22,7 @@ template.innerHTML = `
 			wasd-controls="enabled: false"
 		></a-camera>
 
+
 		<a-player
 			position="-3 0.5 -3"
 		></a-player>

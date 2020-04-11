@@ -78,6 +78,14 @@ function buildConfig(env, args){
 							loader: "sass-loader"
 						}
 					]
+				}, {
+					test: /\.(frag|vert|glsl)$/,
+					use: [
+						{ 
+							loader: 'glsl-shader-loader',
+							options: {}  
+						}
+					]
 				}
 			]
 		},
@@ -87,7 +95,8 @@ function buildConfig(env, args){
 				COMPONENTS: `${src}/components`,
 				ELEMENTS: `${src}/elements`,
 				PRIMITIVES: `${src}/primitives`,
-				SHARED: `${src}/shared`
+				SHARED: `${src}/shared`,
+				SHADERS: `${src}/shaders`
 			}
 		}
 	};

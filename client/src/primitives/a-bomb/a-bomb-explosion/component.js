@@ -27,6 +27,8 @@ const BombExplosion = {
 		// generate the explosion ball and flames 
 		const contents  = document.importNode(template.content, true);
 		const explosion = this.generateExplosion(CONFIG.directions, radius);
+		const ball      = contents.querySelector(`.explosion__ball`);
+
 		// add'em to thie parent entity
 		contents.appendChild(explosion);
 		el.appendChild(contents);
@@ -44,12 +46,12 @@ const BombExplosion = {
 		const range  = radius + 0.5; // add half a tile to compensate for the bomb location
 
 		// create a flame entity in every direction
-		for(let direction of directions){
-			const explosion = document.createElement("a-bomb-explosion-flame");
-			explosion.setAttribute("direction", direction);
-			explosion.setAttribute("range", range);
-			flames.appendChild(explosion);
-		}
+		// for(let direction of directions){
+		// 	const explosion = document.createElement("a-bomb-explosion-flame");
+		// 	explosion.setAttribute("direction", direction);
+		// 	explosion.setAttribute("range", range);
+		// 	flames.appendChild(explosion);
+		// }
 
 		return flames;
 	},// generateExplosion

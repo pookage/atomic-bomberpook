@@ -1,7 +1,9 @@
 import GameScene from "./game-scene/";
+import DebugScene from "./debug-scene/";
 
 const elements = [
-	GameScene
+	GameScene,
+	DebugScene
 ];
 
 export default elements;
