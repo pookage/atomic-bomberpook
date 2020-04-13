@@ -8,7 +8,7 @@ template.innerHTML = `
 	>
 		<a-sphere
 			position="0 0 -5"
-			material="shader: tutorial-shader"
+			material="shader: tutorial-shader; color: red"
 		></a-shere>
 	</a-scene>
 `;

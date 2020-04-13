@@ -12,7 +12,9 @@ void main() {
   //
   // The color itself is a vec4 containing RGBA values 0-1.
   gl_FragColor = mix(
-    vec4(mod(vUv , 0.05) * 20.0, 1.0, 1.0),
+    vec4(
+      mod(vUv, 0.05) * 20.0, 1.0, 1.0
+    ),
     vec4(color, 1.0),
     sin(time)
   );

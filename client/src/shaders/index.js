@@ -6,5 +6,7 @@ const shaders = [
 	TutorialShader
 ];
 
+// https://www.npmjs.com/package/glsl-shader-loader 
+
 export { ExplosionShader };
 export default shaders;

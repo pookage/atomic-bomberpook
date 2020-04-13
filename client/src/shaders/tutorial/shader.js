@@ -2,7 +2,11 @@ import { fragment, vertex } from "./";
 
 const shader = {
 	schema: {
-		time: {
+		color: {
+			type: 'color', 
+			is: 'uniform'
+		},
+		timeMsec: {
 			type: "time",
 			is: "uniform"
 		}

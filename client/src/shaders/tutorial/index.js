@@ -4,5 +4,7 @@ import shaderDefinition from "./shader.js";
 
 const shader = { "tutorial-shader": shaderDefinition };
 
+// maybe look into this? https://threejsfundamentals.org/threejs/lessons/threejs-shadertoy.html
+
 export { fragment, vertex };
 export default shader;
