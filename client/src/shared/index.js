@@ -1,4 +1,4 @@
-import CONFIG from "./config.json";
 import * as UTILS from "./utils.js";
+import STATE from "./state/";
 
-export { CONFIG, UTILS };
+export { UTILS, STATE };

@@ -1,12 +1,8 @@
-import io from "socket.io-client";
-
 import "SHARED/styles/reset.scss";
 import "SHARED/styles/global.scss";
 import "SHARED/styles/fonts.scss";
 import "SHARED/styles/spacing.scss";
 import "SHARED/styles/animations.scss";
-
-import { CONFIG } from "SHARED/";
 
 import elements from "./elements/";
 import aframeComponents from "./components/";

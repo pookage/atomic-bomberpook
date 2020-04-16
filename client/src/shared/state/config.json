@@ -1,0 +1,8 @@
+{
+	"initialState": {
+		"socket__host": "",
+		"socket__connection": null,
+		"socket__connected": false,
+		"socket__connecting": false
+	}
+}

@@ -54,7 +54,9 @@ function buildConfig(env, args){
 						loader: "babel-loader",
 						options: {
 							plugins: [
-								"@babel/plugin-proposal-class-properties"
+								"@babel/plugin-proposal-class-properties",
+								"@babel/plugin-proposal-nullish-coalescing-operator",
+								"@babel/plugin-proposal-optional-chaining"
 							]
 						}
 					}
