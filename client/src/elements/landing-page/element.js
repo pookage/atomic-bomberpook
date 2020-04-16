@@ -43,6 +43,8 @@ export default class LandingPage extends HTMLElement {
 	// EVENT HANDLING
 	// ---------------------------------
 	updateHost(event){
-		console.log(event)
+		const { value } = this.#INPUT__HOST;
+
+		console.log({ value })
 	}
 }; // LandingPage

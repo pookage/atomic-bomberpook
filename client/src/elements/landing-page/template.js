@@ -15,6 +15,7 @@ template.innerHTML = `
 				id="landing_page__input__host"
 				class="${s.input}" 
 				placeholder="eg. www.pookage.dev/bomberman:8081"
+				name="host__ip_address"
 				list="landing_page__hosts"
 				aria-controls="landing_page__input__start landing_page__input__watch"
 			/>

@@ -7,6 +7,7 @@
 	align-items: center;
 
 	--timing__label__in_out: var(--duration__short);
+	--spacing__input__padding: 1em;
 	&[aria-hidden="true"]{
 		opacity: 0;
 		pointer-events: none;
@@ -20,10 +21,15 @@
 		font-size: var(--font_size__heading);
 	}
 	.hosts {
-		margin-top: var(--spacing__regular);
+		margin-top: var(--spacing__large);
 		position: relative;
 	}
 		.input {
+			padding: var(--spacing__input__padding);
+			background-color: #efefef;
+
+			
+
 			// placeholder fade in/out
 			&:not(:focus)::placeholder {
 				opacity: 0;
@@ -39,10 +45,11 @@
 			// label moving logic
 			&:focus ~ .label,
 			&:not(:placeholder-shown) ~ .label {
-				transform: translateY(-100%);
+				transform: translate(0, -100%);
 			}
 			& ~ .label {
-				transform: translateY(0);
+				transform: translate(var(--spacing__input__padding), var(--spacing__input__padding));
+				--monkey: 1em;
 			}
 		}
 		.label {

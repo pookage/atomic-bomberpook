@@ -4,6 +4,6 @@ export function randomInt(min, max) {
 
 export function debounce(callback, ...args){
 	clearTimeout(this.debounceCallback);
-	const delay = 400;
+	const delay = 1000;
 	this.debounceCallback = setTimeout(() => callback(...args), delay);
 }// debounce
