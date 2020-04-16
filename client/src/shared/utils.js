@@ -2,7 +2,8 @@ export function randomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }// randomInt
 
-export function debounce(callback, delay=500){
+export function debounce(callback, ...args){
 	clearTimeout(this.debounceCallback);
-	this.debounceCallback = setTimeout(callback, delay);
+	const delay = 400;
+	this.debounceCallback = setTimeout(() => callback(...args), delay);
 }// debounce

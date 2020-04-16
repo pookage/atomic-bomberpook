@@ -1,3 +1,4 @@
+import { UTILS } from "SHARED/";
 import { COPY, template, s } from "./";
 
 export default class LandingPage extends HTMLElement {
@@ -10,6 +11,8 @@ export default class LandingPage extends HTMLElement {
 	#BUTTON__START;
 	#BUTTON__WATCH;
 
+	// config
+
 
 	// LIFECYCLE JAZZ
 	// -----------------------------------
@@ -17,6 +20,7 @@ export default class LandingPage extends HTMLElement {
 		super();
 
 		// scope binding
+		this.updateHost   = UTILS.debounce.bind(this, this.updateHost.bind(this));
 
 		// dom
 		const clone       = this.#ELEMENT         = document.importNode(template.content, true);
@@ -26,10 +30,19 @@ export default class LandingPage extends HTMLElement {
 		const startButton = this.#BUTTON__START   = clone.querySelector("#landing_page__input__start");
 		const watchButton = this.#BUTTON__WATCH   = clone.querySelector("#landing_page__input__watch");
 
+		hostInput.addEventListener("keyup", this.updateHost)
+
 	}// constructor
 
 	connectedCallback(){
 
 		this.appendChild(this.#ELEMENT);
 	}// connectedCallback
+
+
+	// EVENT HANDLING
+	// ---------------------------------
+	updateHost(event){
+		console.log(event)
+	}
 }; // LandingPage
