@@ -1,0 +1,10 @@
+:root {
+	// timings
+	--duration__long: 1s;
+	--duration__regular: .6s;
+	--duration__short: .3s;
+	--duration__extra_short: .15s;
+
+	// easings
+	--easing__back__in_out: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}

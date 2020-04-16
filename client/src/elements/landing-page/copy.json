@@ -1,0 +1,11 @@
+{
+	"title": "Atomic Bomberwang",
+	"labels": {
+		"host": "Host Address"
+	},
+	"buttons": {
+		"host": "Host",
+		"watch": "Watch",
+		"join": "Join"
+	}
+}

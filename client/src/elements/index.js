@@ -1,7 +1,9 @@
 import GameScene from "./game-scene/";
+import LandingPage from "./landing-page/";
 
 const elements = [
-	GameScene
+	GameScene,
+	LandingPage
 ];
 
 export default elements;

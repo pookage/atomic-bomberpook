@@ -1,0 +1,10 @@
+:root {
+	--font_size__heading: 2.62rem;
+	--font_size__subheading: 1.62rem;
+	--font_size__body: 1rem;
+	--font_size__base: 16px;
+}
+
+body {
+	font-size: var(--font_size__base);
+}
