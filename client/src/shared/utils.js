@@ -28,3 +28,10 @@ export function shallowEquals(obj1, obj2){
 		)
 	);
 }// shallowEquals
+
+export function resolve(path, obj){
+	return path.split('.').reduce(
+		(parent, child) => parent && parent[child] || null, 
+		obj
+	);
+}// resolve
