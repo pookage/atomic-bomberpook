@@ -9,15 +9,13 @@ import { CONFIG, STATE } from "./defaults/index.mjs";
 const app    = express();
 const server = app.listen(CONFIG.port, init);
 
-// state
-const state = { ...STATE };
-
 // socket.io
 const io = socket(server);
 
 // shared socket events
 io.on("connection", handleConnection);
 
+	
 
 
 
@@ -32,16 +30,46 @@ function init(){
 // EVENT HANDLERS
 // -----------------------------------------
 function handleConnection(socket){
-	state.connectedPlayers += 1;
+	STATE.connectedUsers += 1;
+
+	socket.on("new_game", createGame);
+	socket.on("join_game", joinGame);
 
 	socket.on("disconnect", handleDisconnect);
-	console.log(`${state.connectedPlayers} players connected.`);
+	socket.emit("welcome", STATE.game);
+	console.log(`${STATE.connectedUsers} players connected...`);
 }// handelConnection
 
 function handleDisconnect(){
-	state.connectedPlayers -= 1;
+	STATE.connectedUsers -= 1;
 
-	console.log(`${state.connectedPlayers} players connected.`);
+	console.log(`${STATE.connectedUsers} players connected...`);
 }// handleDisconnect
+
+function createGame(){
+
+	STATE.game = {
+		...STATE.game,
+		active: true,
+		host: "pookage",
+		players: {
+			"pookage": {}
+		}
+	};
+
+	io.emit("new_game", STATE.game);
+}// createGame
+
+function joinGame(){
+	STATE.game = {
+		...STATE.game,
+		players: {
+			...STATE.game.players,
+			"new player": {}
+		}
+	};
+
+	io.emit("game_updated", STATE.game);
+}// joinGame
 
 

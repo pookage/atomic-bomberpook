@@ -60,8 +60,12 @@
 		}
 		.button {
 			font-size: 1em;
-			&:disabled {}
-			&:not(:disabled) {}
+			&:disabled {
+				opacity: 0.5;
+			}
+			&:not(:disabled) {
+				opacity: 1;
+			}
 			&[aria-hidden="true"]{
 				opacity: 0;
 				pointer-events: none;
@@ -71,3 +75,20 @@
 				opacity: 1;
 			}
 		}
+	.result {
+		display: block;
+		min-height: 1.62em;
+		transition: opacity var(--duration__short);
+		&.success {
+			color: green;
+		}
+		&.failure {
+			color: red;
+		}
+		&[aria-hidden="true"]{
+			opacity: 0;
+		}
+		&[aria-hidden="false"]{
+			opacity: 1;
+		}
+	}

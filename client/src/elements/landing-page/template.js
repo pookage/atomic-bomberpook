@@ -47,6 +47,11 @@ template.innerHTML = `
 		>
 			${COPY.buttons.watch}
 		</button>
+
+		<output 
+			class="${s.result}"
+			aria-hidden="false"
+		></output>
 	</form>
 `;
 

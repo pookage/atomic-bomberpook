@@ -3,6 +3,9 @@
 		"socket__host": "",
 		"socket__connection": null,
 		"socket__connected": false,
-		"socket__connecting": false
+		"socket__connecting": false,
+		"game__active": false,
+		"game__started": false,
+		"game__players": null
 	}
 }

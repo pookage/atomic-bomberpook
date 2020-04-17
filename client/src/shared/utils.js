@@ -18,15 +18,17 @@ export function shallowEquals(obj1, obj2){
 	if(obj1 === obj2) return true;
 
 	// if one of the objects is actually null or undefined, skip and say false
-	if(!obj1 || !obj2) return false;
+	else if(!obj1 || !obj2) return false;
 
 	// otherwise compare'em
-	return (
-		Object.keys(obj1).length === Object.keys(obj2).length &&
-		Object.keys(obj1).every(
-			key => obj2.hasOwnProperty(key) && obj1[key] === obj2[key]
-		)
-	);
+	else {
+		return (
+			Object.keys(obj1).length === Object.keys(obj2).length &&
+			Object.keys(obj1).every(
+				key => obj2.hasOwnProperty(key) && obj1[key] === obj2[key]
+			)
+		);
+	}
 }// shallowEquals
 
 export function resolve(path, obj){

@@ -4,8 +4,13 @@
 		"host": "Host Address"
 	},
 	"buttons": {
-		"host": "Host",
-		"watch": "Watch",
-		"join": "Join"
+		"host": "New Game",
+		"watch": "Watch Game",
+		"join": "Join Game"
+	},
+	"output": {
+		"success": "Connection successful!",
+		"failure": "Could not connect to host - please check that you've entered the address correctly.",
+		"connecting": "Connecting to host..."
 	}
 }
